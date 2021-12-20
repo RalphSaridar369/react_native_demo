@@ -16,10 +16,12 @@ export const styles = StyleSheet.create({
         textAlign:'center',
         fontSize:16
     },
+    DrawerContainer:{
+        marginLeft:20,
+        marginTop:40
+    },
     DrawerItemContainer:{
         flexDirection:'row',
-        justifyContent:'space-between',
-        marginHorizontal:30,
         marginBottom:20
     },
     DrawerItemIcon:{
@@ -27,6 +29,7 @@ export const styles = StyleSheet.create({
     },
     DrawerItemText:{
         fontSize:18,
+        marginLeft:30,
         fontFamily:'OpenSans-Italic'
     }
 }) 
