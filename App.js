@@ -29,22 +29,25 @@ const CustomDrawer = (props) => {
 				<Text style={styles.LoggedinText}>Logged in as user@yopmail.com</Text>
 			</View>
 			<DrawerItem
-				label={({focused})=><Text style={{color:focused?'green':'red'}}>Home</Text>}
+				label={({focused, color, size})=><Text style={{color:focused?'green':'red'}}>Home</Text>}
 				onPress={() => {
 					props.navigation.navigate("HomeStack",{screen:"home"})
 				}}
-				icon={(focused) => (
+				icon={({focused, color, size}) => (
 					<MaterialCommunityIcons name="home" size={24} color={focused?"green":"red"} />
 				)}
+				activeBackgroundColor="transparent"
 			/>
 			<DrawerItem
-				label="About"
+				focused
+				label={({focused, color, size})=><Text style={{color:focused?'green':'red'}}>About</Text>}
 				onPress={() => {
 					props.navigation.navigate("About",{screen:"about"})
 				}}
 				icon={(focused) => (
 					<MaterialCommunityIcons name="head-question" size={24} color={focused?"green":"red"} />
 				)}
+				activeBackgroundColor="transparent"
 			/>
 		</DrawerContentScrollView>
 	);
