@@ -1,12 +1,17 @@
-import React from 'react'
-import {View,Text, StyleSheet} from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React,{ useContext } from 'react';
+import {View,Text, StyleSheet} from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { MainContext } from '../../MainContext';
 
 const Login = ({navigation}) =>{
+    const { signIn } = useContext(MainContext)
+    // useEffect(()=>{
+
+    // },[])
     return(
         <View>
             <Text style={styles.Header}>Login Page</Text>
-            <TouchableOpacity style={styles.Button}>
+            <TouchableOpacity style={styles.Button} onPress={()=>signIn()}>
                 <Text style={styles.ButtonText}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.Button} onPress={()=>navigation.navigate("register")}>

@@ -3,25 +3,15 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons'
 
-import HomeScreen from '../screens/Home/Home';
-import HomeDetailed from '../screens/Home/HomeDetailed';
-
-import HomeStack from './HomeStack';
 import SettingStack from './SettingsStack';
-
-const Icon = (title,icon) =>{
-    return <TouchableOpacity style={styles.IconContainer}>
-        {icon}
-        <Text style={styles.IconTitle}>{title}</Text>
-    </TouchableOpacity>
-}
+import HomeStack from './HomeStack';
 
 const Tab = createBottomTabNavigator();
 
 function MyTabs() {
   return (
     <Tab.Navigator
-    initialRouteName="HomeStack"
+    // initialRouteName="HomeStack"
     backBehavior="initialRoute"
     screenOptions={{
       tabBarShowLabel:false,

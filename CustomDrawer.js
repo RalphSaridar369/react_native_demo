@@ -27,7 +27,7 @@ export const CustomDrawer = (props) => {
 			</View>
 			<CustomItem label="Home" 
 				onPress={() => {
-					props.navigation.navigate("HomeStack",{screen:"home"})
+					props.navigation.navigate("home")
 				}}
 				icon={({focused, color, size}) => (
 					<MaterialCommunityIcons name="home" size={28} color="black" />
