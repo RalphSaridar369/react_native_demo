@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { MainContext } from '../../MainContext';
 
 const Home = ({navigation}) =>{
-    console.log(useContext(MainContext))
     return(
         <View>
             <Text style={{textAlign:'center',textAlignVertical:'center',height:300}} onPress={()=>navigation.navigate("homeDetailed")}>Home Page</Text>

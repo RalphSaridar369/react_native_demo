@@ -1,44 +1,64 @@
-import React, { useState,useReducer, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import {View,Text} from 'react-native'
-import {MainContext} from './MainContext.js'
+import {MainContext} from './MainContext.js';
+import {CustomDrawer} from './CustomDrawer';
 
-import { CustomDrawer } from './CustomDrawer';
 import useFonts from './assets/Fonts/Hook';
+import { clearAll, getData, storeData } from './helpers/asyncStorage';
 
 import AboutStack from './navigations/AboutStack';
 import BottomTabStack from './navigations/BottomTabStack';
 import AuthStack from './navigations/AuthStack';
-import HomeScreen from './screens/Home/Home.js';
-import Login from './screens/Auth/Login.js';
 
-// export const MainContext = createContext();
 const DrawerStack = createDrawerNavigator();
 
 export default function App() {
 
 	const [IsReady, setIsReady] = useState(false);
 	const [LoggedIn, setLoggedIn] = useState(false);
-	const [usertoken, setUsertoken] = useState(null);
+	const [Usertoken, setUsertoken] = useState(null);
 
 	const LoadFonts = async () => {
 		await useFonts();
 	};
 
+	useEffect(()=>{
+		let runEffect = async() =>{
+			let user = await getData("user")
+			user?setLoggedIn(true):setLoggedIn(false)
+		}
+		runEffect()
+	},[])
+
+	useEffect(()=>{
+	},[setUsertoken,setLoggedIn,setIsReady])
+
+
+// <------ CONTEXT FUNCTIONALITIES ------> 
+
 	const authContext = useMemo(()=>({
-			signIn:()=>{
-				console.log("RUNNING SIGNIN")
-				setUsertoken(1234)
-				setLoggedIn(true)
+			signIn:async(navigation)=>{
+				await storeData('user','1234')
+				setUsertoken(1234);
+				setLoggedIn(true);
+				navigation.navigate("Home");
 			},
-			signOut:()=>{
+			signOut:async()=>{
+				await clearAll()
 				setUsertoken(null)
 				setLoggedIn(false)
 			},
+			LoggedIn:LoggedIn,
+			Usertoken:Usertoken,
 		})
 	)
+
+
+
+
+// <------ LOADING FONTS ------> 
 
 	if (!IsReady) {
 		return <AppLoading
@@ -47,11 +67,11 @@ export default function App() {
 			onError={() => { }}
 		/>
 	}
+
+// <------ RETURNING SCREENS ------> 
+
 	else
 		return (
-			// <View>
-			// 	<Text>Test</Text>
-			// </View>
 			<>
 			  <MainContext.Provider value={authContext}>
 				<NavigationContainer>
@@ -59,20 +79,13 @@ export default function App() {
 						drawerContent={(props) => (
 							<CustomDrawer
 								{...props}
+								LoggedIn={LoggedIn}
 							/>
 						)}
 					>
-						{LoggedIn?<>
-						<DrawerStack.Screen name="Home" component={/* BottomTabStack */HomeScreen} />
-						{/* <DrawerStack.Screen name="About" component={AboutStack} />
-						<DrawerStack.Screen name="Auth" component={AuthStack}}
-						options={{
-							headerShown:false
-						}}/> */}
-						</>:<DrawerStack.Screen name="Auth" component={AuthStack/* Login */}
-						options={{
-							headerShown:false
-						}}/>}
+						<DrawerStack.Screen name="Home" component={BottomTabStack} />
+						<DrawerStack.Screen name="About" component={AboutStack} />
+						<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown:false }}/>
 					</DrawerStack.Navigator>
 				</NavigationContainer>
 		</MainContext.Provider>
