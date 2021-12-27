@@ -21,12 +21,12 @@ const Login = ({ navigation }) => {
             <View style={styles.LogoImgContainer}>
                 <Image source={require('../../assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
-            <TextInputComponent placeholder="Email" onTextChange={(e) => settingCreds(e, "email")} value={userCred.email}
+            <TextInputComponent placeholder="Email" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}
                 leftIcon={{
                     icon: <AntDesign name="user" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
                 }} />
-            <TextInputComponent placeholder="Password" onTextChange={(e) => settingCreds(e, "password")} value={userCred.password} secureTextEntry={showPass}
+            <TextInputComponent placeholder="Password" onChangeText={(e) => settingCreds(e, "password")} value={userCred.password} secureTextEntry={showPass}
                 leftIcon={{
                     icon: <AntDesign name="key" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)

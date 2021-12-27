@@ -1,13 +1,22 @@
+import React, { useState } from 'react';
 import { TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
 
 const TextInputComponent = (props) => {
+    const [focused,setFocused] = useState(false);
+    const [error,setError] = useState(false);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container,{borderColor:!focused?"lightblue":error?"red":"green"}]}>
             {props.leftIcon && <TouchableOpacity onPress={() => props.leftIcon.onPress()}>
                 {props.leftIcon.icon}
             </TouchableOpacity>}
             <TextInput
                 {...props}
+                onFocus={(e)=>{
+                    setFocused(true)
+                }}
+                onBlur={(e)=>{
+                    setFocused(false)
+                }}
                 style={[styles.textInput]} />
             {props.rightIcon && <TouchableOpacity onPress={() => props.rightIcon.onPress()}>
                 {props.rightIcon.icon}
