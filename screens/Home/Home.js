@@ -5,8 +5,8 @@ import { MainContext } from '../../MainContext';
 
 const Home = ({navigation}) =>{
     return(
-        <View>
-            <Text style={{textAlign:'center',textAlignVertical:'center',height:300}} onPress={()=>navigation.navigate("homeDetailed")}>Home Page</Text>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text onPress={()=>navigation.navigate("homeDetailed")}>Home Page</Text>
         </View>
     )
 }

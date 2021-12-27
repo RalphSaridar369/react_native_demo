@@ -3,8 +3,8 @@ import {View,Text} from 'react-native'
 
 const HomeDetailed = () =>{
     return(
-        <View>
-            <Text style={{textAlign:'center',textAlignVertical:'center',height:300}}>Home Detailed Page</Text>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Home Detailed Page</Text>
         </View>
     )
 }

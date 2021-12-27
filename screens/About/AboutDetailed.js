@@ -3,8 +3,8 @@ import {View,Text} from 'react-native'
 
 const AboutDetailed = () =>{
     return(
-        <View>
-            <Text style={{textAlign:'center',textAlignVertical:'center',height:300}}>About Detailed Page</Text>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>About Detailed Page</Text>
         </View>
     )
 }

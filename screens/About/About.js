@@ -3,8 +3,8 @@ import {View,Text} from 'react-native'
 
 const About = ({navigation}) =>{
     return(
-        <View>
-            <Text  style={{textAlign:'center',textAlignVertical:'center',height:300}} onPress={()=>navigation.navigate("aboutDetailed")}>About Page</Text>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text onPress={()=>navigation.navigate("aboutDetailed")}>About Page</Text>
         </View>
     )
 }

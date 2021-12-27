@@ -3,8 +3,8 @@ import {View,Text} from 'react-native'
 
 const settingsDetailed = () =>{
     return(
-        <View>
-            <Text style={{textAlign:'center',textAlignVertical:'center',height:300}}>Settings Detailed Page</Text>
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+            <Text>Settings Detailed Page</Text>
         </View>
     )
 }

@@ -9,7 +9,7 @@ const HStack = createStackNavigator();
 const HomeStack = () =>{
     return(
         <HStack.Navigator>
-            <HStack.Screen name="test" 
+            <HStack.Screen name="home" 
             component={HomeScreen} 
             options={{headerShown:false}} />
             <HStack.Screen name="homeDetailed" 
