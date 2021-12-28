@@ -83,7 +83,7 @@ export default function App() {
 							/>
 						)}
 					>
-						<DrawerStack.Screen name="Home" component={BottomTabStack} options={{headerStyle:{backgroundColor:'green'},headerTitleStyle:{textAlign:'left'}}}/>
+						<DrawerStack.Screen name="Home" component={BottomTabStack}/>
 						<DrawerStack.Screen name="About" component={AboutStack} />
 						<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown:false }}/>
 					</DrawerStack.Navigator>

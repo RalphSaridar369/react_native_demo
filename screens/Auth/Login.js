@@ -5,7 +5,7 @@ import { MainContext } from '../../MainContext';
 import { AntDesign } from '@expo/vector-icons';
 import TouchableOpacityComponent from '../../components/TouchableOpacity';
 import LinkComponent from '../../components/Link';
-import {storeData} from '../../helpers/asyncStorage';
+import { formValidator } from '../../helpers/formValidator';
 
 const Login = ({ navigation }) => {
     const { signIn } = useContext(MainContext)
@@ -35,7 +35,7 @@ const Login = ({ navigation }) => {
                     icon: <AntDesign name="eyeo" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
                 }} />
-            <TouchableOpacityComponent text="Login" onPress={() => signIn(navigation)}
+            <TouchableOpacityComponent text="Login" onPress={() =>formValidator(userCred,"login",()=>signIn(navigation))}
                 settings={["danger", "outlined"]} />
             <LinkComponent text={"Register"} settings={["primary", "underline"]} onPress={() => navigation.navigate("Auth", { screen: 'register' })} />
         </View>

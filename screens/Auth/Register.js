@@ -5,10 +5,11 @@ import { MainContext } from '../../MainContext';
 import { AntDesign } from '@expo/vector-icons';
 import TouchableOpacityComponent from '../../components/TouchableOpacity';
 import AlertComponent from '../../components/Alert';
+import { formValidator } from '../../helpers/formValidator';
 
 const Login = ({ navigation }) => {
     const { signIn } = useContext(MainContext)
-    const [userCred, setUserCred] = useState({ email: '', password: '', confirm:'' })
+    const [userCred, setUserCred] = useState({ email: '', password: '', confirm: '' })
     const [showPass, setShowPass] = useState(true)
 
     const settingCreds = (e, t) => {
@@ -20,12 +21,12 @@ const Login = ({ navigation }) => {
             <View style={styles.LogoImgContainer}>
                 <Image source={require('../../assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
-            <TextInputComponent placeholder="Email" onTextChange={(e) => settingCreds(e, "email")} value={userCred.email}
+            <TextInputComponent placeholder="Email" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}
                 leftIcon={{
                     icon: <AntDesign name="user" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
                 }} />
-            <TextInputComponent placeholder="Password" onTextChange={(e) => settingCreds(e, "password")} value={userCred.password} secureTextEntry={showPass}
+            <TextInputComponent placeholder="Password" onChangeText={(e) => settingCreds(e, "password")} value={userCred.password} secureTextEntry={showPass}
                 leftIcon={{
                     icon: <AntDesign name="key" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
@@ -34,7 +35,7 @@ const Login = ({ navigation }) => {
                     icon: <AntDesign name="eyeo" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
                 }} />
-            <TextInputComponent placeholder="Confirm Password" onTextChange={(e) => settingCreds(e, "confirm")} value={userCred.confirm} secureTextEntry={showPass}
+            <TextInputComponent placeholder="Confirm Password" onChangeText={(e) => settingCreds(e, "confirm")} value={userCred.confirm} secureTextEntry={showPass}
                 leftIcon={{
                     icon: <AntDesign name="key" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
@@ -43,7 +44,7 @@ const Login = ({ navigation }) => {
                     icon: <AntDesign name="eyeo" size={24} color="black" />,
                     onPress: () => setShowPass(!showPass)
                 }} />
-            <TouchableOpacityComponent text="Register" onPress={() => AlertComponent("SignUp","User registered successfully")}
+            <TouchableOpacityComponent text="Register" onPress={() => formValidator(userCred, "register", () => AlertComponent("SignUp", "User registered successfully", [{ text: "Ok", onPress: () => navigation.navigate("login") }]))}
                 settings={["primary", "outlined"]} />
         </View>
     )
