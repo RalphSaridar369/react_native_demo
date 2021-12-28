@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { MainContext } from '../../MainContext';
 import { AntDesign } from '@expo/vector-icons';
 import { formValidator } from '../../helpers/formValidator';
-import { TextInput, Link, TouchableOpacity } from '../../components';
+import { TextInput, Link, TouchableOpacity, ViewContainer } from '../../components';
 
 const Login = ({ navigation }) => {
     const { signIn } = useContext(MainContext)
@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <View style={styles.loginContainer}>
+        <ViewContainer>
             <View style={styles.LogoImgContainer}>
                 <Image source={require('../../assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
@@ -36,7 +36,7 @@ const Login = ({ navigation }) => {
             <TouchableOpacity text="Login" onPress={() =>formValidator(userCred,"login",()=>signIn(navigation))}
                 settings={["danger", "outlined"]} />
             <Link text={"Register"} settings={["primary", "underline"]} onPress={() => navigation.navigate("Auth", { screen: 'register' })} />
-        </View>
+        </ViewContainer>
     )
 }
 

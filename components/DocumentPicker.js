@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { AntDesign } from '@expo/vector-icons';
-import { Alert } from './index';
 
 const DocumentPickerComponent = (props) =>{
     const [gotDocument,setGotDocument] = useState(false) 
@@ -23,7 +22,7 @@ const DocumentPickerComponent = (props) =>{
         if(result.uri && validateType(result.name))
             props.setDocument(result.uri)
         else
-            Alert("Error","This extension is not an option")
+            Alert.alert("Error","This extension is not an option")
     }
 
     return(

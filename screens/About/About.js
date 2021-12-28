@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker } from '../../components/index'; 
+import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, Picker, ViewContainer, CheckBox } from '../../components/index'; 
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
     const [image, setImage] = useState();
+    const [switchToggle, setSwitchToggle] = useState(false);
+    const [selected,setSelected] = useState();
+    const [checked,setChecked] = useState(false)
 
     return (
         <ScrollView style={{ flex: 1 }}>
+            <ViewContainer>
             <Text onPress={() => navigation.navigate("aboutDetailed")}>About Page</Text>
             <DocumentPicker
                 text="Get document"
@@ -44,6 +48,35 @@ const About = ({ navigation }) => {
             source={{ uri:image}}
             resizeMode="cover"
             style={{width:300,height:300}} />}
+            <Switch 
+            onValueChange = {()=>setSwitchToggle(!switchToggle)}
+            value={switchToggle}
+            left="Switch"/>
+            <Switch 
+            onValueChange = {()=>setSwitchToggle(!switchToggle)}
+            value={switchToggle}
+            right="Switch"/>
+            <ActivityIndicator />
+            <Picker
+            selectedValue={selected}
+            onValueChange={(itemValue, itemIndex) =>
+                setSelected(itemValue)
+            }
+            prompt="Language" 
+            map={[
+                {label:'Java',value:1},
+                {label:'C++',value:2},
+                {label:'C#',value:3},
+                {label:'C',value:4},
+                {label:'F#',value:5},
+                {label:'J',value:6},
+            ]}/>
+            <CheckBox
+            value={checked}
+            onValueChange={()=>setChecked(!checked)}
+            left="Checkbox"
+            />
+            </ViewContainer>
         </ScrollView>
     )
 }

@@ -1,10 +1,10 @@
-import { Platform, ScrollView } from "react-native";
+import { Platform, ScrollView, View } from "react-native";
 
 const ScrollViewComponent = (props) =>{
     return(
-        <ScrollView style={{ flex:1 }}
+        <ScrollView style={{ flex:1, marginHorizontal:20 }}
         showsVerticalScrollIndicator={Platform.OS=='ios'?false:true}>
-            {props.children}
+            <View style={{paddingVertical:20}}>{props.children}</View>
         </ScrollView>
     )
 }
