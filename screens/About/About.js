@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import DocumentPicker from '../../components/DocumentPicker'
+import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import AlertComponent from '../../components/Alert';
-import ImagePicker from '../../components/ImagePicker';
+import { Alert, ScrollView, DocumentPicker, ImagePicker } from '../../components/index'; 
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
+    const [image, setImage] = useState();
+
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ScrollView style={{ flex: 1 }}>
             <Text onPress={() => navigation.navigate("aboutDetailed")}>About Page</Text>
             <DocumentPicker
                 text="Get document"
@@ -20,6 +20,7 @@ const About = ({ navigation }) => {
                 }}
                 // onPress={()=>}
                 setDocument={(e) => setDocument(e)}
+                types={["pdf","docx"]}
             />
             <DocumentPicker
                 text="Get document without right icon"
@@ -27,12 +28,23 @@ const About = ({ navigation }) => {
                     icon: <Entypo name="text-document" size={24} color="black" />
                 }}
                 setDocument={(e) => setDocument(e)}
+                types={["pdf","docx"]}
             />
-            <TouchableOpacity onPress={() => AlertComponent("State", document ? document : "I didn't receive the document from the child component yet")}>
+            <TouchableOpacity onPress={() => Alert("State", document ? document : "I didn't receive the document from the child component yet")}>
                 <Text>Press me to test if I received the state or not</Text>
             </TouchableOpacity>
-            <ImagePicker />
-        </View>
+            <ImagePicker 
+            setImage={(e)=>setImage(e)}
+            icon={<Entypo name="camera" size={24} color="black" />}
+            />
+            <ImagePicker 
+            setImage={(e)=>setImage(e)}
+            />
+            {image &&<Image 
+            source={{ uri:image}}
+            resizeMode="cover"
+            style={{width:300,height:300}} />}
+        </ScrollView>
     )
 }
 
