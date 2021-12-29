@@ -10,3 +10,4 @@ export {default as ActivityIndicator } from './ActivityIndicator';
 export {default as Picker } from './Picker';
 export {default as ViewContainer } from './ViewContainer';
 export {default as CheckBox } from './Checkbox';
+export {default as SelectMultiple } from './SelectMultiple';

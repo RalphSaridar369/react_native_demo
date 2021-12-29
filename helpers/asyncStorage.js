@@ -21,6 +21,14 @@ export const storeData = async (key,value) => {
     }
   }
 
+export const removeKey = async (key) => {
+  try {
+    await AsyncStorage.removeItem(key)
+  } catch(e) {
+    // remove error
+  }
+}
+
 export const clearAll = async () => {
     try {
       await AsyncStorage.clear()

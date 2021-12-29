@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, Picker, ViewContainer, CheckBox } from '../../components/index'; 
+import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, Picker, ViewContainer, CheckBox, SelectMultiple } from '../../components/index'; 
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
@@ -9,6 +9,7 @@ const About = ({ navigation }) => {
     const [switchToggle, setSwitchToggle] = useState(false);
     const [selected,setSelected] = useState();
     const [checked,setChecked] = useState(false)
+    const [multiple,setMultiple] = useState();
 
     return (
         <ScrollView style={{ flex: 1 }}>
@@ -22,6 +23,7 @@ const About = ({ navigation }) => {
                 rightIcon={{
                     icon: <Entypo name="aircraft" size={24} color="black" />
                 }}
+
                 // onPress={()=>}
                 setDocument={(e) => setDocument(e)}
                 types={["pdf","docx"]}
@@ -56,7 +58,6 @@ const About = ({ navigation }) => {
             onValueChange = {()=>setSwitchToggle(!switchToggle)}
             value={switchToggle}
             right="Switch"/>
-            <ActivityIndicator />
             <Picker
             selectedValue={selected}
             onValueChange={(itemValue, itemIndex) =>
@@ -76,6 +77,15 @@ const About = ({ navigation }) => {
             onValueChange={()=>setChecked(!checked)}
             left="Checkbox"
             />
+            <SelectMultiple 
+            buttonText='Languages'
+            map={[
+            { label: 'Apples', value: 1 },
+            { label: 'Oranges', value: 2 },
+            ]}
+            search
+            selectedItems={multiple}
+            onSelectionChange={(e)=>setMultiple(e)}/>
             </ViewContainer>
         </ScrollView>
     )
