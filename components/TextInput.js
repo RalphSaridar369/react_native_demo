@@ -10,7 +10,7 @@ const TextInputComponent = (props) => {
                 {props.leftIcon.icon}
             </TouchableOpacity>}
             <TextInput
-                {...props}
+                {...props.main}
                 onFocus={(e)=>{
                     setFocused(true)
                 }}
