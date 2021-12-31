@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image } from 'react-native';
 import { MainContext } from '../../MainContext';
 import { AntDesign } from '@expo/vector-icons';
 import { formValidator } from '../../helpers/formValidator';
@@ -77,9 +77,6 @@ const Login = ({ navigation }) => {
             <TouchableOpacity text="Login" onPress={() =>formValidator(userCred,"login",()=>signIn(navigation))}
                 settings={["danger", "outlined"]} />
             <Link text={"Register"} settings={["primary", "underline"]} onPress={() => navigation.navigate("Auth", { screen: 'register' })} />
-            <Text onPress={async()=>{
-                alert(userCred+"")
-            }}>Test me </Text>
         </ViewContainer>
     )
 }
