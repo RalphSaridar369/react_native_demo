@@ -18,7 +18,7 @@ const DocumentPickerComponent = (props) =>{
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({});
         setGotDocument(result.uri && validateType(result.name)?true:false);
-        console.log(result);
+        // console.log(result);
         if(result.uri && validateType(result.name))
             props.setDocument(result.uri)
         else

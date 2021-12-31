@@ -36,5 +36,5 @@ export const clearAll = async () => {
       // clear error
     }
   
-    console.log('Done.')
+    // console.log('Done.')
   }
