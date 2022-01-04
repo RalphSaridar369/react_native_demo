@@ -12,7 +12,7 @@ const About = ({ navigation }) => {
     const [multiple,setMultiple] = useState();
 
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <ScrollView>
             <ViewContainer>
             <Text onPress={() => navigation.navigate("aboutDetailed")}>About Page</Text>
             <DocumentPicker
