@@ -4,6 +4,9 @@ import AppLoading from 'expo-app-loading';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import {MainContext} from './MainContext.js';
 import {CustomDrawer} from './CustomDrawer';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
+
+import {Dimensions, Text, View, StyleSheet } from 'react-native'
 
 import useFonts from './assets/Fonts/Hook';
 import { clearAll, getData, storeData } from './helpers/asyncStorage';
@@ -11,6 +14,7 @@ import { clearAll, getData, storeData } from './helpers/asyncStorage';
 import AboutStack from './navigations/AboutStack';
 import BottomTabStack from './navigations/BottomTabStack';
 import AuthStack from './navigations/AuthStack';
+import Products from './screens/Products/Products';
 
 const DrawerStack = createDrawerNavigator();
 
@@ -19,7 +23,9 @@ export default function App() {
 	const [IsReady, setIsReady] = useState(false);
 	const [LoggedIn, setLoggedIn] = useState(false);
 	const [Usertoken, setUsertoken] = useState(null);
-
+	const [UserData, setUserData] = useState({
+		email:'user@hotmail.com',
+	})
 	const LoadFonts = async () => {
 		await useFonts();
 	};
@@ -58,6 +64,19 @@ export default function App() {
 
 
 
+
+// <------ HEADER OPTIONS IF LOGGED IN ------> 
+const Header = (props) =>{
+	return (
+		<View style={styles.headerContainer}>
+			<Text style={styles.title}>{props.title}</Text>
+			{(props.LoggedIn && props?.icons != undefined)&& <View style={styles.iconContainer}>
+				{props.icons.map((item,index)=> <View key={index}>{item.icon}</View>)}
+			</View>}
+		</View>
+	)
+} 
+
 // <------ LOADING FONTS ------> 
 
 	if (!IsReady) {
@@ -67,7 +86,6 @@ export default function App() {
 			onError={() => { }}
 		/>
 	}
-
 // <------ RETURNING SCREENS ------> 
 
 	else
@@ -80,12 +98,23 @@ export default function App() {
 							<CustomDrawer
 								{...props}
 								LoggedIn={LoggedIn}
+								UserData={UserData}
 							/>
 						)}
 					>
-						<DrawerStack.Screen name="Home" component={BottomTabStack}/>
-						<DrawerStack.Screen name="About" component={AboutStack} />
-						<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown:false }}/>
+						<DrawerStack.Screen name="Home" component={BottomTabStack} options={{
+							headerTitle:()=><Header title="Home" LoggedIn={LoggedIn} 
+							icons={[
+								{icon:<MaterialCommunityIcons name="logout" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
+								{icon:<MaterialCommunityIcons name="logout" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
+							]}/>}}/>
+						<DrawerStack.Screen name="About" component={AboutStack} options={{
+							headerTitle:()=><Header title="About" LoggedIn={LoggedIn} 
+						/>}} />
+						<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown:false }} />
+						<DrawerStack.Screen name="Products" component={Products} options={{
+							headerTitle:()=><Header title="Products" LoggedIn={LoggedIn} 
+						/>}} />
 					</DrawerStack.Navigator>
 				</NavigationContainer>
 		</MainContext.Provider>
@@ -93,3 +122,23 @@ export default function App() {
 		);
 };
 
+const styles = StyleSheet.create({
+	headerContainer:{
+	    flexDirection:'row',
+		alignItems:'center',
+		justifyContent:'space-between',
+		flex:1,
+		width:Dimensions.get('window').width*0.8,
+	},
+	title:{
+		fontSize:18,
+		flex:3
+	},
+	iconContainer:{
+		display:'flex',
+		flexDirection:'row',
+	},
+	icon:{
+		marginRight:20
+	}
+})
