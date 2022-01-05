@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, ScrollView} from 'react-native';
 import { MainContext } from '../../MainContext';
 import { AntDesign } from '@expo/vector-icons';
 import { formValidator } from '../../helpers/formValidator';
-import { TextInput, Link, TouchableOpacity, ViewContainer, CheckBox, Alert } from '../../components';
+import { TextInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox, Alert } from '../../components';
 import {styles} from './LoginStyle';
 import { storeData, removeKey, getData } from '../../helpers/asyncStorage';
 import { emptyString } from '../../helpers/emptyString';
@@ -48,7 +48,7 @@ const Login = ({ navigation }) => {
     },[setUserCred])
 
     return (
-        <ViewContainer>
+        <KeyboardAvoidingView>
             <View style={styles.LogoImgContainer}>
                 <Image source={require('../../assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
@@ -77,7 +77,7 @@ const Login = ({ navigation }) => {
             <TouchableOpacity text="Login" onPress={() =>formValidator(userCred,"login",()=>signIn(navigation))}
                 settings={["danger", "outlined"]} />
             <Link text={"Register"} settings={["primary", "underline"]} onPress={() => navigation.navigate("Auth", { screen: 'register' })} />
-        </ViewContainer>
+        </KeyboardAvoidingView>
     )
 }
 

@@ -105,7 +105,7 @@ const Header = (props) =>{
 						<DrawerStack.Screen name="Home" component={BottomTabStack} options={{
 							headerTitle:()=><Header title="Home" LoggedIn={LoggedIn} 
 							icons={[
-								{icon:<MaterialCommunityIcons name="logout" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
+								{icon:<MaterialCommunityIcons name="login" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
 								{icon:<MaterialCommunityIcons name="logout" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
 							]}/>}}/>
 						<DrawerStack.Screen name="About" component={AboutStack} options={{

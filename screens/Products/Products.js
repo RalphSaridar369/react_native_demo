@@ -1,14 +1,26 @@
 import React, { useEffect } from 'react'
-import {View,Text} from 'react-native';
+import {Text, KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
 import { useContext } from 'react';
 import { MainContext } from '../../MainContext';
+import TextInput from '../../components/TextInput';
 
 const Products = () =>{
     return(
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>Products Page</Text>
-        </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={styles.container}
+        >
+        <TextInput 
+            main={{placeholder:"Email", value:'test'}} />
+        </KeyboardAvoidingView>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent:'center'
+    },
+})
 
 export default Products

@@ -8,6 +8,7 @@ export {default as ImagePicker } from './ImagePicker';
 export {default as Switch } from './Switch';
 export {default as ActivityIndicator } from './ActivityIndicator';
 export {default as Picker } from './Picker';
-export {default as ViewContainer } from './ViewContainer';
 export {default as CheckBox } from './Checkbox';
 export {default as SelectMultiple } from './SelectMultiple';
+export {default as ViewContainer} from './ViewContainer';
+export {default as KeyboardAvoidingView} from './KeyboardAvoidingView';
