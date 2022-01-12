@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Image, ScrollView} from 'react-native';
+import { View, Image } from 'react-native';
 import { MainContext } from '../../MainContext';
-import { AntDesign } from '@expo/vector-icons';
 import { formValidator } from '../../helpers/formValidator';
-import { TextInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox, Alert } from '../../components';
+import { TextInput, PassInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox, Alert } from '../../components';
 import {styles} from './LoginStyle';
 import { storeData, removeKey, getData } from '../../helpers/asyncStorage';
 import { emptyString } from '../../helpers/emptyString';
+import AlertComponent from '../../components/Alert';
 
 const Login = ({ navigation }) => {
     const { signIn } = useContext(MainContext)
+    const [alert,setAlert] = useState({visible:false,data:{}});
     const [userCred, setUserCred] = useState({ email: '', password: '' })
     const [showPass, setShowPass] = useState(true)
     const [rememberMe,setRememberMe] = useState(false)
@@ -53,21 +54,13 @@ const Login = ({ navigation }) => {
                 <Image source={require('../../assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
             <TextInput 
-                main={{placeholder:"Email", onChangeText:(e) => settingCreds(e, "email"), value:userCred.email}}
-                leftIcon={{
-                    icon: <AntDesign name="user" size={24} color="black" />,
-                    onPress: () => setShowPass(!showPass)
-                }} />
-            <TextInput
-                main={{placeholder:"Password", onChangeText:(e) => settingCreds(e, "password"), value:userCred.password,secureTextEntry:showPass}}
-                leftIcon={{
-                    icon: <AntDesign name="key" size={24} color="black" />,
-                    onPress: () => setShowPass(!showPass)
-                }}
-                rightIcon={{
-                    icon: <AntDesign name="eyeo" size={24} color="black" />,
-                    onPress: () => setShowPass(!showPass)
-                }} />
+                label="Email" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}
+                left="account-outline"
+                />
+            <PassInput
+                label="Password" onChangeText={(e) => settingCreds(e, "password")} value={userCred.password}
+                left="lock-outline"
+                />
                 <View>
                     <CheckBox
                     right="Remember me"
@@ -75,7 +68,7 @@ const Login = ({ navigation }) => {
                     onValueChange={()=>asyncRemember()} />
                 </View>
             <TouchableOpacity text="Login" onPress={() =>formValidator(userCred,"login",()=>signIn(navigation))}
-                settings={["danger", "outlined"]} />
+                settings={["primary", "outlined"]} />
             <Link text={"Register"} settings={["primary", "underline"]} onPress={() => navigation.navigate("Auth", { screen: 'register' })} />
         </KeyboardAvoidingView>
     )

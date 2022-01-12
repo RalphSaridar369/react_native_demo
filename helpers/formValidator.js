@@ -17,7 +17,7 @@ const forms = {
         email: yup.string().required().email(),
     }),
 
-}
+}   
 
 export const formValidator = async(payload,type,callback) =>{
     const validationResult =  await forms[type]

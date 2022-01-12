@@ -1,42 +1,50 @@
-import { Platform, StyleSheet, View } from "react-native";
-import {Picker} from '@react-native-picker/picker';
+import React, { useState } from 'react';
+import { View, Text } from 'react-native';
+import {MaterialIcons} from '@expo/vector-icons';
+import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
-const PickerComponent = (props) =>{
-    const data = [
-        {label:'Java',value:1},
-        {label:'C++',value:2},
-        {label:'C#',value:3},
-        {label:'C',value:4},
-        {label:'F#',value:5},
-        {label:'J',value:6},
-    ]
-    return(
-        <View style={[styles.container,Platform.OS!="ios"?styles.android:null]}>
-            <Picker
-            numberOfLines={1}
-            mode={Platform.OS=='ios'?"dropdown":"dialog"}
-            prompt={props.prompt}
-            selectedValue={props.selectedValue}
-            onValueChange={(itemValue, itemIndex)=>props.onValueChange(itemValue, itemIndex)}>
-                {data.map((item,index)=><Picker.Item label={item.label} value={item.value} key={index} />)}
-            </Picker>
+export const Single = (props)=> {
+    
+    return (
+      <View>
+        <SectionedMultiSelect
+          IconRenderer={MaterialIcons}
+          uniqueKey="id"
+          subKey="children"
+          renderSelectText={()=><Text>{props.text}</Text>}
+          searchPlaceholderText="Search"
+          showDropDowns={false}
+          readOnlyHeadings={true}
+          showChips={false}
+          onSelectedItemsChange={(e)=>props.onSelectedItemsChange(e)}
+          selectedItems={props.selectedItems}
+          single={true}
+          items={props.items}
+        />
+      </View>
+    );
+  }
+
+  export const Multi = (props)=> {
+      
+      return (
+        <View>
+          <SectionedMultiSelect
+            IconRenderer={MaterialIcons}
+            uniqueKey="id"
+            subKey="children"
+            renderSelectText={()=><Text>{props.text}</Text>}
+            searchPlaceholderText="Search"
+            showDropDowns={true}
+            readOnlyHeadings={true}
+            showChips={false}
+            onSelectedItemsChange={(e)=>props.onSelectedItemsChange(e)}
+            selectedItems={props.selectedItems}
+            single={false}
+            items={props.items}
+          />
         </View>
-    )
-}
-
-const styles = StyleSheet.create({
-    container:{
-        marginHorizontal:10,
-        marginVertical:20,
-        paddingHorizontal:10,
-        width:300
-    },
-    android:{
-        borderWidth:1,
-        borderColor:'lightblue',
-        height:50,
-        justifyContent:'center'
+      );
     }
-})
 
-export default PickerComponent
+

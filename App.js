@@ -18,8 +18,7 @@ import Products from './screens/Products/Products';
 
 const DrawerStack = createDrawerNavigator();
 
-export default function App() {
-
+export const App = () => {
 	const [IsReady, setIsReady] = useState(false);
 	const [LoggedIn, setLoggedIn] = useState(false);
 	const [Usertoken, setUsertoken] = useState(null);
@@ -142,3 +141,5 @@ const styles = StyleSheet.create({
 		marginRight:20
 	}
 })
+
+export default App

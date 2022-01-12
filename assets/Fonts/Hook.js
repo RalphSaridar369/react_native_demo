@@ -7,4 +7,5 @@ export default useFonts = async () =>
     'OpenSans-Italic': require('./OpenSans-Italic.ttf'),
     'OpenSans-Medium': require('./OpenSans-Medium.ttf'),
     'OpenSans-Regular': require('./OpenSans-Regular.ttf'),
+    'ProximaNova-Light':require('./ProximaNova-Light.ttf'),
   });

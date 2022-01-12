@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, Picker, ViewContainer, CheckBox, SelectMultiple } from '../../components/index'; 
+import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, Picker, ViewContainer, CheckBox, MultiSelect } from '../../components/index';
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
     const [image, setImage] = useState();
     const [switchToggle, setSwitchToggle] = useState(false);
-    const [selected,setSelected] = useState();
-    const [checked,setChecked] = useState(false)
-    const [multiple,setMultiple] = useState();
+    const [selected, setSelected] = useState();
+    const [checked, setChecked] = useState(false)
+    const [multiple, setMultiple] = useState();
 
     return (
         <ScrollView>
-            <ViewContainer>
+            <ViewContainer>{/* 
             <Text onPress={() => navigation.navigate("aboutDetailed")}>About Page</Text>
             <DocumentPicker
                 text="Get document"
@@ -57,35 +57,49 @@ const About = ({ navigation }) => {
             <Switch 
             onValueChange = {()=>setSwitchToggle(!switchToggle)}
             value={switchToggle}
-            right="Switch"/>
-            <Picker
-            selectedValue={selected}
-            onValueChange={(itemValue, itemIndex) =>
-                setSelected(itemValue)
-            }
-            prompt="Language" 
-            map={[
-                {label:'Java',value:1},
-                {label:'C++',value:2},
-                {label:'C#',value:3},
-                {label:'C',value:4},
-                {label:'F#',value:5},
-                {label:'J',value:6},
-            ]}/>
-            <CheckBox
-            value={checked}
-            onValueChange={()=>setChecked(!checked)}
-            left="Checkbox"
-            />
-            <SelectMultiple 
-            buttonText='Languages'
-            map={[
-            { label: 'Apples', value: 1 },
-            { label: 'Oranges', value: 2 },
-            ]}
-            search
-            selectedItems={multiple}
-            onSelectionChange={(e)=>setMultiple(e)}/>
+            right="Switch"/> */}
+                <Picker
+                    text="Fruits"
+                    items={[
+                        {
+                            name: 'Fruits', id: 1, children: [
+                                { name: 'Apples', id: 2 },
+                                { name: 'Oranges', id: 3 },
+                            ]
+                        }
+                    ]}
+                    onSelectedItemsChange={(e) => {
+                        setSelected(e)
+                    }}
+                    selectedItems={selected}
+                />
+                <CheckBox
+                    value={checked}
+                    onValueChange={() => setChecked(!checked)}
+                    left="Checkbox"
+                />
+                <MultiSelect
+                    text="Brands"
+                    items={[
+                        {
+                            name: 'Apple', id: 1, children: [
+                                { name: 'Laptop', id: 2 },
+                                { name: 'Iphone', id: 3 },
+                            ]
+                        },
+                        {
+                            name: 'Samsung', id: 4, children: [
+                                { name: 'Laptop', id: 5 },
+                                { name: 'Iphone', id: 6 },
+                            ]
+                        },
+                    
+                    ]}
+                    onSelectedItemsChange={(e) => {
+                        setSelected(e)
+                    }}
+                    selectedItems={selected}
+                />
             </ViewContainer>
         </ScrollView>
     )

@@ -1,50 +1,52 @@
 import React, { useState } from 'react';
-import { TextInput, View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { TextInput } from 'react-native-paper';
 
-const TextInputComponent = (props) => {
-    const [focused,setFocused] = useState(false);
-    const [error,setError] = useState(false);
+export const TextInputComponent = ({ left, right, ...props }) => {
+    const [error, setError] = useState(false);
     return (
-        <View style={[styles.container,{borderColor:!focused?"lightblue":error?"red":"green"}]}>
-            {props.leftIcon && <TouchableOpacity onPress={() => props.leftIcon.onPress()}>
-                {props.leftIcon.icon}
-            </TouchableOpacity>}
+        <View style={styles.container}>
             <TextInput
-                {...props.main}
-                onFocus={(e)=>{
-                    setFocused(true)
-                }}
-                onBlur={(e)=>{
-                    setFocused(false)
-                }}
-                style={[styles.textInput]} />
-            {props.rightIcon && <TouchableOpacity onPress={() => props.rightIcon.onPress()}>
-                {props.rightIcon.icon}
-            </TouchableOpacity>}
+                {...props}
+                mode='outlined'
+                style={[styles.textInput]}
+                left={left ? <TextInput.Icon name={left} /> : null}
+                right={right ? <TextInput.Icon name={right} /> : null}
+            />
         </View>
     )
 }
+
+export const PassInputComponent = ({ left, right, ...props }) => {
+    const [error, setError] = useState(false);
+    const [show, setShow] = useState(false);
+    return (
+        <View style={styles.container}>
+            <TextInput
+                {...props}
+                secureTextEntry={show}
+                mode='outlined'
+                style={[styles.textInput]}
+                left={left ? <TextInput.Icon name={left} /> : null}
+                right={<TextInput.Icon name={!show?"eye-off-outline":"eye-outline"} onPress={()=>setShow(!show)} />}
+            />
+        </View>
+    )
+}
+
+
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         width: 250,
         height: 40,
-        alignSelf: 'center',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        borderWidth: 1,
-        borderColor: 'lightblue',
         marginBottom: 20,
-        paddingHorizontal: 10,
     },
     textInput: {
-        paddingHorizontal: 10,
+        paddingHorizontal:10,
+        width: 250,
         height: 40,
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
+    },
 })
-
-export default TextInputComponent
