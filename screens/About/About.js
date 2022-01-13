@@ -13,7 +13,7 @@ const About = ({ navigation }) => {
 
     return (
         <ScrollView>
-            <ViewContainer>{/* 
+            <ViewContainer>
             <Text onPress={() => navigation.navigate("aboutDetailed")}>About Page</Text>
             <DocumentPicker
                 text="Get document"
@@ -57,7 +57,7 @@ const About = ({ navigation }) => {
             <Switch 
             onValueChange = {()=>setSwitchToggle(!switchToggle)}
             value={switchToggle}
-            right="Switch"/> */}
+            right="Switch"/>
                 <Picker
                     text="Fruits"
                     items={[
