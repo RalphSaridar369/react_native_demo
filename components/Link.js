@@ -13,6 +13,9 @@ const LinkComponent = (props) =>{
 // <------ STYLES CHANGES DEPENDING ON PROPS ------> 
 
 const styles = StyleSheet.create({
+    null:{
+        color:'#fff',
+    },
     primary:{
         color:'green',
     },

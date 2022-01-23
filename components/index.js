@@ -13,3 +13,8 @@ export {default as CheckBox } from './Checkbox';
 export {Multi as MultiSelect } from './Picker';
 export {default as ViewContainer} from './ViewContainer';
 export {default as KeyboardAvoidingView} from './KeyboardAvoidingView';
+export {default as HeaderText} from './HeaderText';
+export {default as Text} from './Text';
+export {default as SearchBar} from './Searchbar';
+export {default as Collapsible} from './DrawerCollapsible';
+export {default as RadioButton} from './RadioButtonGroup';

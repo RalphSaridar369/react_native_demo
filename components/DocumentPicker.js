@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, Dimensions, Platform } from 'react-native';
 import * as DocumentPicker from 'expo-document-picker';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -26,7 +26,7 @@ const DocumentPickerComponent = (props) =>{
     }
 
     return(
-        <TouchableOpacity style={styles.documentContainer} onPress={()=>pickDocument()}>
+        <TouchableOpacity style={[styles.documentContainer,Platform.OS==='ios'?styles.ios:styles.android]} onPress={()=>pickDocument()}>
         {props.leftIcon && <View>
             {props.leftIcon.icon}
             </View>}
@@ -44,14 +44,23 @@ const DocumentPickerComponent = (props) =>{
 
 const styles = StyleSheet.create({
     documentContainer:{
-        borderWidth:1,
-        borderColor:'lightblue',
-        marginVertical:10,
+        marginBottom:20,
+        borderRadius:5,
         padding:10,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
-        width:300
+        width: Dimensions.get('screen').width * 0.8,
+    },
+    ios:{
+        borderBottomWidth:1,
+        borderColor:'#31C2AA',
+        height:50
+    },
+    android:{
+        borderWidth:1,
+        borderColor:'#31C2AA',
+        height:65
     }
 })
 

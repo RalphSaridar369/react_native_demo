@@ -2,7 +2,7 @@ import { View, StyleSheet } from 'react-native';
 
 const ContainerView = (props) =>{
     return(
-    <View style={styles.container}>
+    <View style={[styles.container,{...props.style}]}>
         {props.children}
     </View>
     )
