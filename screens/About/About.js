@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, Picker, ViewContainer, CheckBox, MultiSelect } from '../../components/index';
+import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, ViewContainer, CheckBox, MultiSelect } from '../../components/index';
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
@@ -10,6 +10,52 @@ const About = ({ navigation }) => {
     const [selected, setSelected] = useState();
     const [checked, setChecked] = useState(false)
     const [multiple, setMultiple] = useState();
+
+    const [apiData, setApiData] = useState({
+        shipmentServices: [
+            {
+                name: 'Shipment Services', id: 1, 
+                children: [
+                    { name: 'Normal', id: 2 },
+                    { name: 'Premium', id: 3 },
+                ]
+            }
+        ],
+        countries: [
+            {name: 'Country', id: 1,
+                children:[
+                    { name: 'LB', id: 2 },
+                    { name: 'UK', id: 3 },
+                    { name: 'USA', id: 4 },
+                ] 
+            }
+        ]
+    })
+    const [userCred, setUserCred] = useState({
+        name: '',
+        email: '',
+        country: [],
+        phone: '',
+        country_reg: [],
+        password: '',
+        confirm: '',
+        city: '',
+        street: '',
+        postal: '',
+        company: '',
+        password: '',
+        confirm_pass: '',
+        services: [],
+        document: {}
+    });
+    const [selectedData, setSelectedData] = useState({
+        country:[],
+        country_reg:[],
+        services: [],
+    })
+    const settingCreds = (e, t) => {
+        setUserCred({ ...userCred, services: e })
+    };
 
     return (
         <ScrollView>
@@ -58,47 +104,24 @@ const About = ({ navigation }) => {
             onValueChange = {()=>setSwitchToggle(!switchToggle)}
             value={switchToggle}
             right="Switch"/>
-                <Picker
-                    text="Fruits"
-                    items={[
-                        {
-                            name: 'Fruits', id: 1, children: [
-                                { name: 'Apples', id: 2 },
-                                { name: 'Oranges', id: 3 },
-                            ]
-                        }
-                    ]}
-                    onSelectedItemsChange={(e) => {
-                        setSelected(e)
+                <MultiSelect
+                    // key={index}
+                    text="Services"
+                    items={apiData.shipmentServices}
+                    single={true}
+                    onSelectedItemsChange={(e)=>{
+                        setSelectedData({...selectedData,services:e})
                     }}
-                    selectedItems={selected}
+                    onSelectedItemsObjectsChange={(e) => {
+                        settingCreds(e)
+                        console.log(e);
+                    }}
+                    selectedItems={selectedData.services}
                 />
                 <CheckBox
                     value={checked}
                     onValueChange={() => setChecked(!checked)}
                     left="Checkbox"
-                />
-                <MultiSelect
-                    text="Brands"
-                    items={[
-                        {
-                            name: 'Apple', id: 1, children: [
-                                { name: 'Laptop', id: 2 },
-                                { name: 'Iphone', id: 3 },
-                            ]
-                        },
-                        {
-                            name: 'Samsung', id: 4, children: [
-                                { name: 'Laptop', id: 5 },
-                                { name: 'Iphone', id: 6 },
-                            ]
-                        },
-                    
-                    ]}
-                    onSelectedItemsChange={(e) => {
-                        setSelected(e)
-                    }}
-                    selectedItems={selected}
                 />
             </ViewContainer>
         </ScrollView>

@@ -2,22 +2,24 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Platform } from 'react-native';
 import {MaterialIcons} from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
-import {Picker} from '@react-native-picker/picker';
-import {Dropdown} from 'react-native-element-dropdown';
-
 
 const styles2 = StyleSheet.create({
   container: {
-      flex: 1,
+      // flex: 1,d
       backgroundColor: 'white',
-      padding: 10,
-      width:'100%'
+      padding: 0,
+      width:'100%',
   },
   dropdown: {
       backgroundColor: 'white',
-      borderBottomColor: 'gray',
-      borderBottomWidth: 0.5,
-      marginTop: 20,
+      borderColor: 'gray',
+      borderWidth: Platform.OS === 'ios'? 0 : 1,
+      borderBottomWidth:Platform.OS==='ios'?0.5:1,
+      marginBottom: 40,
+      height:60,
+      // paddingVertical: Platform.OS==='ios'? 0 : 20,
+      paddingHorizontal: Platform.OS==='ios'? 10 : 20,
+      borderRadius:5
   },
   icon: {
       marginRight: 5,
@@ -50,7 +52,13 @@ const styles2 = StyleSheet.create({
 
 const styles = StyleSheet.create({
   container:{
-        width: Dimensions.get('screen').width * 0.8,
+    width: Dimensions.get('screen').width * 0.8,
+    borderRadius:5,
+    borderWidth:Platform.OS==='android' ? 1 : 0,
+    borderBottomWidth:Platform.OS==='ios'?0.5:1,
+    // height:60,
+    borderColor:'gray',
+    marginBottom:40,
   },
   android:{
     borderWidth:1,
@@ -75,36 +83,7 @@ const _renderItem = item => {
   );
 };
 
-export const Single = ({items,...props})=> {
-    return (
-      Platform.OS == "android" ?<View style={[styles.container,Platform.OS==='android'?[styles.picker,styles.android]:null]}>
-        <Picker
-        {...props}>
-          {(items?.length>0 && items !== undefined) && items.map((item,index)=>  <Picker.Item key={index} label={item.label} value={item.label} />)}
-        </Picker>
-      </View>:
-      
-
-      <View style={[styles2.container,props.containerStyle]}>
-      <Dropdown
-          style={[styles2.dropdown,props.style]}
-          containerStyle={styles2.shadow}
-          data={props.data}
-          search={false}
-          labelField="label"
-          valueField="value"
-          label="Dropdown"
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
-          renderItem={item => _renderItem(item)}
-      />
-  </View>
-    );
-  }
-
   export const Multi = (props)=> {
-      
       return (
         <View style={styles.container}>
           <SectionedMultiSelect
@@ -113,12 +92,14 @@ export const Single = ({items,...props})=> {
             subKey="children"
             renderSelectText={()=><Text>{props.text}</Text>}
             searchPlaceholderText="Search"
-            showDropDowns={true}
-            readOnlyHeadings={true}
-            showChips={false}
+            showDropDowns={props.single?false:true}
+            alwaysShowSelectText={true}
+            showChips={true}
+            selectChildren={false}
             onSelectedItemsChange={(e)=>props.onSelectedItemsChange(e)}
+            onSelectedItemObjectsChange={(e)=>props.onSelectedItemsObjectsChange(e)}
             selectedItems={props.selectedItems}
-            single={false}
+            single={props.single?true:false}
             items={props.items}
           />
         </View>
