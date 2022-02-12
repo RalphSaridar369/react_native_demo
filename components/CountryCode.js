@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {
-  SafeAreaView,
-  Text,
   View,
   StyleSheet,
-  TextInput,
-  TouchableOpacity,
+  Platform,
 } from "react-native";
-import { styles } from "react-native-element-dropdown/src/TextInput/styles";
 import PhoneInput from "react-native-phone-number-input";
 
 const CountryCode = (props) => {
@@ -16,6 +12,8 @@ const CountryCode = (props) => {
       <View style={styles1.Box}>
         <PhoneInput
           onChangeFormattedText={props.onChangeFormattedText}
+          onChangeCountry={props.onChangeCountry}
+          onChangeText={props.onChangeText}
           defaultValue={props.defaultValue}
           containerStyle={{
             borderRadius: 5,
@@ -35,13 +33,13 @@ const CountryCode = (props) => {
 export default CountryCode;
 
 const styles1 = StyleSheet.create({
-    Container: {
-      marginBottom: 30,
-    },
-    Box: {
-      borderWidth: 1.1,
-      borderColor: "grey",
-      borderRadius: 5,
-      // ma,
-    },
-  });
+  Container: {
+    marginBottom: 40,
+  },
+  Box: {
+    borderBottomWidth: Platform.OS!=='ios'?1:0.5,
+    borderWidth: Platform.OS!=='ios'?1:0,
+    borderColor: "gray",
+    borderRadius: 5,
+      },
+});

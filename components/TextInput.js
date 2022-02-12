@@ -13,10 +13,10 @@ export const TextInputComponent = ({ left, right, ...props }) => {
                 selectionColor='#31C2AA'
                 activeUnderlineColor='#31c2aa'
                 mode={props.variant?props.variant:  Platform.OS=='ios'?'flat':'outlined'}
-                style={[styles.textInput,Platform.OS==='ios' && props.style?props.style:Platform.OS==='ios'?styles.ios:styles.android]}
+                style={[styles.textInput,Platform.OS==='ios' && props.style?props.style:Platform.OS==='ios'?styles.ios:styles.android, props.style]}
                 left={left ?<TextInput.Icon name={left=='search'?()=><MaterialIcons name="search" color="black" size={20} />:left}  style={{marginTop:14}}/> : null}
                 right={right ?<TextInput.Icon name={right=='search'?()=><MaterialIcons name="search" color="black" size={20} />:right}  style={{marginTop:14}}/> : null}
-            />
+            /> 
         </View>
     )
 }

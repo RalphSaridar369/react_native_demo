@@ -4,6 +4,7 @@ import {View, Text, StyleSheet} from 'react-native';
 const RadioButtonG = ({items,...props}) => {
     return (
         <RadioButton.Group {...props}>
+            <View style={props.containerStyle}>
             {items.map((item, index) => {
                 return (
                     <View key={index} style={styles.radioContainer}>
@@ -12,6 +13,7 @@ const RadioButtonG = ({items,...props}) => {
                     </View>
                 )
             })}
+            </View>
         </RadioButton.Group>
     )
 }

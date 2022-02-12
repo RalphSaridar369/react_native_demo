@@ -4,7 +4,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import { AntDesign } from '@expo/vector-icons';
 
 const DocumentPickerComponent = (props) =>{
-    const [gotDocument,setGotDocument] = useState(false) 
+    // const [gotDocument,setGotDocument] = useState(false) 
 
     const validateType = (value) =>{
         let document = value.split('.') 
@@ -17,12 +17,16 @@ const DocumentPickerComponent = (props) =>{
 
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({});
-        setGotDocument(result.uri && validateType(result.name)?true:false);
-        // console.log(result);
-        if(result.uri && validateType(result.name))
-            props.setDocument(result.uri)
-        else
-            Alert.alert("Error","This extension is not an option")
+            console.log(result)
+            if(result.uri && validateType(result.name)){
+                let splitArray = await result.name.split('.');
+                let extension = await splitArray[splitArray.length-1];
+                await props.setDocument({file:result.uri,extension:extension, name:result.name});
+            }
+            else{
+                props.setError();
+                Alert.alert("Error","This extension is not an option")
+            }
     }
 
     return(
@@ -34,7 +38,7 @@ const DocumentPickerComponent = (props) =>{
             <View>
                 {props.rightIcon ? 
                 props.rightIcon.icon :
-                !gotDocument?
+                !props?.value[0]?.doc_title?
                 <AntDesign name="closecircleo" size={24} color="red" />:
                 <AntDesign name="checkcircleo" size={24} color="green" />}    
             </View>

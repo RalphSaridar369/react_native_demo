@@ -4,8 +4,8 @@ const LinkComponent = (props) =>{
 
     const chosenStyles = props.settings.map((item)=>styles[item])
     return(
-        <TouchableOpacity onPress={()=>props.onPress()}>
-            <Text  style={[chosenStyles]}>{props.text}</Text>
+        <TouchableOpacity onPress={()=>props.onPress()} style={props.style}>
+            <Text style={[chosenStyles,props.textStyle]}>{props.text}</Text>
         </TouchableOpacity>
     )
 }
