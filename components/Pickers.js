@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Dimensions, Platform, SafeAreaView, TouchableOpacity, Modal, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, ScrollView,  Dimensions, Platform, SafeAreaView, TouchableOpacity, Modal, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import HeaderText from './HeaderText';
+import { TextInputComponent } from './TextInput';
 import TouchableOpacityComponent from './TouchableOpacity';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -135,6 +136,7 @@ export const MultiPick = (props) => {
   //     setOpen(!open)
   //   })
   // },[])
+  const [search, setSearch] = useState("");
   const [open, setOpen] = useState(false);
   return (
     <SafeAreaView style={[styles2.dropdown]}>
@@ -155,15 +157,24 @@ export const MultiPick = (props) => {
                 <AntDesign name="close" size={24} color="red" />
               </TouchableOpacity>
             </View>
+            {props.search && <View style={{marginTop:20}}>
+              <TextInputComponent
+              value={search}
+              style={{width:Dimensions.get('screen').width-40}}
+              onChangeText={(e)=>setSearch(e)}
+              label="Search"
+              right="search"/>
+            </View>}
             <ScrollView style={{ marginTop: 20 }}>
-              {props?.items.map((item, index) => <TouchableOpacity key={index}
+              {props?.items.filter((item)=>item[props.customLabel].toLowerCase().includes(search.toLowerCase()))
+              .map((item, index) => <TouchableOpacity key={index}
                 onPress={() => {
                   if (!props.value.includes(item)) {
                     let newValue = [...props.value, item];
                     props.setValue(newValue);
                   }
                   else {
-                    let removedValue = props.value.filter((it) => it.service_id !== item.service_id)
+                    let removedValue = props.value.filter((it) => it[props.customId] !== item[props.customId])
                     console.log("REMOVED: ",removedValue)
                     props.setValue(removedValue);
                   }
@@ -234,7 +245,7 @@ export const Pick = (props) => {
 
 
 
-export const CountryPick = (props) => {
+export const Normal = (props) => {
   // let {items,...rest} = props;
   // console.log(rest, items[0]);
   // useEffect(()=>{
@@ -243,6 +254,7 @@ export const CountryPick = (props) => {
   //   })
   // },[])
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
 
   return (
     <SafeAreaView style={[styles2.dropdown]}>
@@ -263,8 +275,17 @@ export const CountryPick = (props) => {
                 <AntDesign name="close" size={24} color="red" />
               </TouchableOpacity>
             </View>
+            {props.search && <View style={{marginTop:20}}>
+              <TextInputComponent
+              value={search}
+              style={{width:Dimensions.get('screen').width-40}}
+              onChangeText={(e)=>setSearch(e)}
+              label="Search"
+              right="search"/>
+            </View>}
             <ScrollView style={{ marginTop: 20 }}>
-              {props?.items.map((item, index) => <TouchableOpacity key={index}
+              {props?.items.filter((item)=>item['name'].toLowerCase().includes(search.toLowerCase()))
+              .map((item, index) =><TouchableOpacity key={index}
                 onPress={() => {
                   props.setValue(item.id);
                   setOpen(!open);
