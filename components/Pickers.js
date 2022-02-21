@@ -6,6 +6,7 @@ import HeaderText from './HeaderText';
 import { TextInputComponent } from './TextInput';
 import TouchableOpacityComponent from './TouchableOpacity';
 import { AntDesign } from '@expo/vector-icons';
+import RNPickerSelect from 'react-native-picker-select';
 
 const styles2 = StyleSheet.create({
   container: {
@@ -297,6 +298,28 @@ export const Normal = (props) => {
           </View>
         </Modal>
       </TouchableWithoutFeedback>
+    </SafeAreaView>
+  );
+}
+
+export const PackageNormal = (props) => {
+  // let {items,...rest} = props;
+  // console.log(rest, items[0]);
+  // useEffect(()=>{
+  //   BackHandler.addEventListener('hardwareBackPress', function () {
+  //     setOpen(!open)
+  //   })
+  // },[])
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  return (
+    <SafeAreaView style={styles2.dropdown}>
+      <RNPickerSelect
+          {...props}
+          placeholder={props.placeholder}
+        >
+          <Text>{props.value || props.placeholder}</Text>
+        </RNPickerSelect>
     </SafeAreaView>
   );
 }

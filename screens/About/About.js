@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, ViewContainer, CheckBox, MultiSelect, MultiPicker, NormalPicker } from '../../components/index';
+import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, ViewContainer, CheckBox, PackagePicker, MultiSelect, MultiPicker, NormalPicker } from '../../components/index';
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
@@ -10,6 +10,7 @@ const About = ({ navigation }) => {
     const [selected, setSelected] = useState();
     const [checked, setChecked] = useState(false)
     const [multiple, setMultiple] = useState();
+    const [packagePicker, setPackagePicker] = useState();
 
     const [apiData, setApiData] = useState({
         shipmentServices: [
@@ -115,9 +116,24 @@ const About = ({ navigation }) => {
                     }}
                     search
                 />
+                <PackagePicker 
+                items={[
+                    { label: 'Football', value: 'football' },
+                    { label: 'Baseball', value: 'baseball' },
+                    { label: 'Hockey', value: 'hockey' },
+                ]}
+                onValueChange={(value) => {
+                    console.log(value)
+                    setPackagePicker(value);
+                }}
+                value={packagePicker}
+                placeholder="Select an item"/>
                 <CheckBox
                     value={checked}
-                    onValueChange={() => setChecked(!checked)}
+                    onValueChange={() => {
+                        
+                        setChecked(!checked);
+                    }}
                     left="Checkbox"
                 />
             </ViewContainer>
