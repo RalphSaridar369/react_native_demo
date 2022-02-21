@@ -122,11 +122,11 @@ const About = ({ navigation }) => {
                     { label: 'Baseball', value: 'baseball' },
                     { label: 'Hockey', value: 'hockey' },
                 ]}
-                onValueChange={(value) => {
-                    console.log(value)
-                    setPackagePicker(value);
+                onValueChange={(value,index) => {
+                    setPackagePicker({label:value,value:index});
+                    console.log(packagePicker)
                 }}
-                value={packagePicker}
+                // value={packagePicker}
                 placeholder="Select an item"/>
                 <CheckBox
                     value={checked}

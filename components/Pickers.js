@@ -311,14 +311,20 @@ export const PackageNormal = (props) => {
   //   })
   // },[])
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("")
   const [search, setSearch] = useState("");
   return (
     <SafeAreaView style={styles2.dropdown}>
       <RNPickerSelect
-          {...props}
+          onValueChange={(e,index)=>{
+            setValue(e);
+            props.onValueChange(e,index);
+          }}
+          items={props.items}
+          value={value}
           placeholder={props.placeholder}
         >
-          <Text>{props.value || props.placeholder}</Text>
+          <Text>{value || props.placeholder}</Text>
         </RNPickerSelect>
     </SafeAreaView>
   );
