@@ -13,7 +13,6 @@ export {Multi as MultiSelect } from './Pickers';
 export {Pick as Picker } from './Pickers';
 export {MultiPick as MultiPicker } from './Pickers';
 export {Normal as NormalPicker } from './Pickers';
-export {PackageNormal as PackagePicker} from './Pickers'
 export {default as ViewContainer} from './ViewContainer';
 export {default as KeyboardAvoidingView} from './KeyboardAvoidingView';
 export {default as HeaderText} from './HeaderText';

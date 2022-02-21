@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView,  Dimensions, Platform, SafeAreaView, TouchableOpacity, Modal, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, ScrollView,  Dimensions, Platform, SafeAreaView, TouchableWithoutFeedback, TouchableOpacity, Modal, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import HeaderText from './HeaderText';
@@ -298,34 +298,6 @@ export const Normal = (props) => {
           </View>
         </Modal>
       </TouchableWithoutFeedback>
-    </SafeAreaView>
-  );
-}
-
-export const PackageNormal = (props) => {
-  // let {items,...rest} = props;
-  // console.log(rest, items[0]);
-  // useEffect(()=>{
-  //   BackHandler.addEventListener('hardwareBackPress', function () {
-  //     setOpen(!open)
-  //   })
-  // },[])
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("")
-  const [search, setSearch] = useState("");
-  return (
-    <SafeAreaView style={styles2.dropdown}>
-      <RNPickerSelect
-          onValueChange={(e,index)=>{
-            setValue(e);
-            props.onValueChange(e,index);
-          }}
-          items={props.items}
-          value={value}
-          placeholder={props.placeholder}
-        >
-          <Text>{value || props.placeholder}</Text>
-        </RNPickerSelect>
     </SafeAreaView>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Text, TouchableOpacity, Image } from 'react-native'
 import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, ViewContainer, CheckBox, PackagePicker, MultiSelect, MultiPicker, NormalPicker } from '../../components/index';
+import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, ViewContainer, CheckBox, MultiSelect, MultiPicker, NormalPicker } from '../../components/index';
 
 const About = ({ navigation }) => {
     const [document, setDocument] = useState();
@@ -116,18 +116,6 @@ const About = ({ navigation }) => {
                     }}
                     search
                 />
-                <PackagePicker 
-                items={[
-                    { label: 'Football', value: 'football' },
-                    { label: 'Baseball', value: 'baseball' },
-                    { label: 'Hockey', value: 'hockey' },
-                ]}
-                onValueChange={(value,index) => {
-                    setPackagePicker({label:value,value:index});
-                    console.log(packagePicker)
-                }}
-                // value={packagePicker}
-                placeholder="Select an item"/>
                 <CheckBox
                     value={checked}
                     onValueChange={() => {
