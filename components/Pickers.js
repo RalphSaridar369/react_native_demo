@@ -151,7 +151,7 @@ export const MultiPick = (props) => {
           visible={open}
           onDismiss={() => setOpen(false)}
           onRequestClose={() => setOpen(false)}>
-          <View style={{ padding: 20 }}>
+          <View style={{ padding: 20, flex:1 }}>
             <View style={styles.headerContainer}>
               <HeaderText style={{ marginVertical: 0, marginTop: 0 }}>{props.label}</HeaderText>
               <TouchableOpacity onPress={() => setOpen(false)}>
@@ -220,7 +220,7 @@ export const Pick = (props) => {
           visible={open}
           onDismiss={() => setOpen(false)}
           onRequestClose={() => setOpen(false)}>
-          <View style={{ padding: 20 }}>
+          <View style={{ padding: 20, flex:1 }}>
             <View style={styles.headerContainer}>
               <HeaderText style={{ marginVertical: 0, marginTop: 0 }}>{props.label}</HeaderText>
               <TouchableOpacity onPress={() => setOpen(false)}>
@@ -269,7 +269,7 @@ export const Normal = (props) => {
           visible={open}
           onDismiss={() => setOpen(false)}
           onRequestClose={() => setOpen(false)}>
-          <View style={{ padding: 20 }}>
+          <View style={{ padding: 20, flex:1 }}>
             <View style={styles.headerContainer}>
               <HeaderText style={{ marginVertical: 0, marginTop: 0 }}>{props.label}</HeaderText>
               <TouchableOpacity onPress={() => setOpen(false)}>
