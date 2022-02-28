@@ -1,8 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useReducer } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import AppLoading from 'expo-app-loading';
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import {MainContext} from './MainContext.js';
 import {CustomDrawer} from './CustomDrawer';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -16,60 +15,49 @@ import BottomTabStack from './navigations/BottomTabStack';
 import AuthStack from './navigations/AuthStack';
 import Products from './screens/Products/Products';
 
+import { MainContext, initialState } from './MainContext.js';
+import mainReducer from './reducer/MainReducer.js';
+
 const DrawerStack = createDrawerNavigator();
 
 export const App = () => {
+	
+	const [state, dispatch] = useReducer(mainReducer, initialState);
+	const [LoggedIn, setLoggedIn] = useState(false)
+	const [UserData, setUserData] = useState({});
 	const [IsReady, setIsReady] = useState(false);
-	const [LoggedIn, setLoggedIn] = useState(false);
-	const [Usertoken, setUsertoken] = useState(null);
-	const [UserData, setUserData] = useState({
-		email:'user@hotmail.com',
-	})
 	const LoadFonts = async () => {
 		await useFonts();
 	};
 
 	useEffect(()=>{
 		let runEffect = async() =>{
+			console.log("GLOBAL STATE: ",await state)
 			let user = await getData("user")
-			user?setLoggedIn(true):setLoggedIn(false)
+			if(user){
+				// setLoggedIn(true);
+				// setUserData(user);
+				dispatch({type:'SIGN_IN', payload: {
+					...state,
+					UserData:{
+						email:'user1@yopmail.com'
+					},
+				}})
+			}
 		}
 		runEffect()
 	},[])
 
 	useEffect(()=>{
-	},[setUsertoken,setLoggedIn,setIsReady])
 
-
-// <------ CONTEXT FUNCTIONALITIES ------> 
-
-	const authContext = useMemo(()=>({
-			signIn:async(navigation)=>{
-				await storeData('user','1234')
-				setUsertoken(1234);
-				setLoggedIn(true);
-				navigation.navigate("Home");
-			},
-			signOut:async()=>{
-				await clearAll()
-				setUsertoken(null)
-				setLoggedIn(false)
-			},
-			LoggedIn:LoggedIn,
-			Usertoken:Usertoken,
-		})
-	)
-
-
-
-
+	},[dispatch])
 
 // <------ HEADER OPTIONS IF LOGGED IN ------> 
 const Header = (props) =>{
 	return (
 		<View style={styles.headerContainer}>
 			<Text style={styles.title}>{props.title}</Text>
-			{(props.LoggedIn && props?.icons != undefined)&& <View style={styles.iconContainer}>
+			{(state.LoggedIn && props?.icons != undefined)&& <View style={styles.iconContainer}>
 				{props.icons.map((item,index)=> <View key={index}>{item.icon}</View>)}
 			</View>}
 		</View>
@@ -90,14 +78,14 @@ const Header = (props) =>{
 	else
 		return (
 			<>
-			  <MainContext.Provider value={authContext}>
+			  <MainContext.Provider value={[state, dispatch]}>
 				<NavigationContainer>
 					<DrawerStack.Navigator
 						drawerContent={(props) => (
 							<CustomDrawer
 								{...props}
-								LoggedIn={LoggedIn}
-								UserData={UserData}
+								LoggedIn={state.LoggedIn}
+								UserData={state.UserData}
 							/>
 						)}
 					>

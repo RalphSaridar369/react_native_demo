@@ -20,18 +20,18 @@ const CustomItem = (props) =>{
 
 
 export const CustomDrawer = (props) => {
-	const { signOut } = useContext(MainContext)
+    const [state, dispatch] = useContext(MainContext);
+	console.log("state inside custom",state);
 	const clickLogout = () =>{
-		signOut();
-		props.navigation.navigate("Home");
+        dispatch({type: 'SIGN_OUT'})
 	}
 	return (
 		<DrawerContentScrollView {...props} showsVerticalScrollIndicator={false}>
 			<View style={styles.LogoImgContainer}>
 				<Image source={require('./assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
 			</View>
-			{props.LoggedIn && <View style={styles.LoggedinContainer}>
-				<Text style={styles.LoggedinText}>Logged in as {props.UserData.email}</Text>
+			{state.LoggedIn && <View style={styles.LoggedinContainer}>
+				<Text style={styles.LoggedinText}>Logged in as {state.UserData.email}</Text>
 			</View>}
 			<CustomItem label="Home" 
 				onPress={() => {
