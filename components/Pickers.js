@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView,  Dimensions, Platform, SafeAreaView, TouchableWithoutFeedback, TouchableOpacity, Modal, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { View, Text, StyleSheet, ScrollView,  Dimensions, Platform, SafeAreaView, TouchableOpacity, Modal, TouchableWithoutFeedback, BackHandler } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 import HeaderText from './HeaderText';
