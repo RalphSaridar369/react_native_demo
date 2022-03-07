@@ -1,6 +1,7 @@
 import React , {useContext} from 'react';
 import {styles} from './AppStyle';
-import {View,Image,Text} from 'react-native'; 
+import {View,Image} from 'react-native';
+import { Text } from './components'; 
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MainContext } from './MainContext';
@@ -9,6 +10,7 @@ const CustomItem = (props) =>{
 	return(
 		<DrawerItem
 		label={props.label}
+		labelStyle={{fontFamily:'OpenSans-Medium'}}
 		onPress={props.onPress}
 		icon={props.icon}
 		activeBackgroundColor="transparent"
@@ -21,7 +23,6 @@ const CustomItem = (props) =>{
 
 export const CustomDrawer = (props) => {
     const [state, dispatch] = useContext(MainContext);
-	console.log("state inside custom",state);
 	const clickLogout = () =>{
         dispatch({type: 'SIGN_OUT'})
 	}
@@ -31,7 +32,7 @@ export const CustomDrawer = (props) => {
 				<Image source={require('./assets/logo.jpg')} style={styles.LogoImg} resizeMode='cover' />
 			</View>
 			{state.LoggedIn && <View style={styles.LoggedinContainer}>
-				<Text style={styles.LoggedinText}>Logged in as {state.UserData.email}</Text>
+				<Text style={styles.LoggedinText}><Text style={styles.loggedInnerText}>Logged in as</Text> {state.UserData.email}</Text>
 			</View>}
 			<CustomItem label="Home" 
 				onPress={() => {

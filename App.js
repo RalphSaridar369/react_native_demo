@@ -5,7 +5,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import {CustomDrawer} from './CustomDrawer';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
-import {Dimensions, Text, View, StyleSheet } from 'react-native'
+import {Dimensions, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 
 import useFonts from './assets/Fonts/Hook';
 import { clearAll, getData, storeData } from './helpers/asyncStorage';
@@ -23,8 +23,6 @@ const DrawerStack = createDrawerNavigator();
 export const App = () => {
 	
 	const [state, dispatch] = useReducer(mainReducer, initialState);
-	const [LoggedIn, setLoggedIn] = useState(false)
-	const [UserData, setUserData] = useState({});
 	const [IsReady, setIsReady] = useState(false);
 	const LoadFonts = async () => {
 		await useFonts();
@@ -88,19 +86,26 @@ const Header = (props) =>{
 								UserData={state.UserData}
 							/>
 						)}
+						screenOptions={({ navigation }) => ({
+							headerStyle:{backgroundColor:'#FF6863'},
+							headerLeft: props => <TouchableOpacity style={{marginHorizontal:20}}
+							onPress={()=>navigation.toggleDrawer()}>
+									<MaterialCommunityIcons name="menu" size={28} color="white" />
+								</TouchableOpacity>,
+						})}
 					>
 						<DrawerStack.Screen name="Home" component={BottomTabStack} options={{
-							headerTitle:()=><Header title="Home" LoggedIn={LoggedIn} 
+							headerTitle:()=><Header title="Home" LoggedIn={state.LoggedIn} 
 							icons={[
-								{icon:<MaterialCommunityIcons name="login" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
-								{icon:<MaterialCommunityIcons name="logout" size={24} color="black" style={styles.icon} onPress={()=>alert("test")}/>},
-							]}/>}}/>
+								{icon:<MaterialCommunityIcons name="login" size={24} color="white" style={styles.icon} onPress={()=>alert("test")}/>},
+							]}/>,
+							}}/>
 						<DrawerStack.Screen name="About" component={AboutStack} options={{
-							headerTitle:()=><Header title="About" LoggedIn={LoggedIn} 
+							headerTitle:()=><Header title="About" LoggedIn={state.LoggedIn} 
 						/>}} />
 						<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown:false }} />
 						<DrawerStack.Screen name="Products" component={Products} options={{
-							headerTitle:()=><Header title="Products" LoggedIn={LoggedIn} 
+							headerTitle:()=><Header title="Products" LoggedIn={state.LoggedIn} 
 						/>}} />
 					</DrawerStack.Navigator>
 				</NavigationContainer>
@@ -119,7 +124,8 @@ const styles = StyleSheet.create({
 	},
 	title:{
 		fontSize:18,
-		flex:3
+		flex:3,
+		color:'#fff'
 	},
 	iconContainer:{
 		display:'flex',

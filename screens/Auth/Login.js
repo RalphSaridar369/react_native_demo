@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, Alert } from 'react-native';
 import { MainContext } from '../../MainContext';
 import { formValidator } from '../../helpers/formValidator';
-import { TextInput, PassInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox, Alert } from '../../components';
+import { TextInput, PassInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox } from '../../components';
 import { styles } from './LoginStyle';
 import { storeData, removeKey, getData } from '../../helpers/asyncStorage';
 import { emptyString } from '../../helpers/emptyString';
@@ -15,7 +15,9 @@ const Login = ({ navigation }) => {
     const [rememberMe, setRememberMe] = useState(false);
 
     const signIn =()=>{
-        if(!email.includes("user1") || !email.includes("user2")){
+        let email = userCred.email;
+        console.log(email)
+        if(!email.toLowerCase() === "user1@yopmail.com" || !email.toLowerCase() === "user2@yopmail.com"){
             Alert.alert("Error","Wrong Email")
         }
         else{
@@ -65,7 +67,7 @@ const Login = ({ navigation }) => {
     return (
         <KeyboardAvoidingView>
             <View style={styles.LogoImgContainer}>
-                <Image source={require('../../assets/Logo-Drawer.png')} style={styles.LogoImg} resizeMode='cover' />
+                <Image source={require('../../assets/logo.jpg')} style={styles.LogoImg} resizeMode='cover' />
             </View>
             <TextInput
                 label="Email" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}

@@ -12,9 +12,13 @@ export const styles = StyleSheet.create({
     LoggedinContainer:{
         marginBottom:30
     },
+    loggedInnerText:{
+        color:'#FF6863',
+    },
     LoggedinText:{
         textAlign:'center',
-        fontSize:16
+        fontSize:16,
+        paddingHorizontal:20
     },
     DrawerContainer:{
         marginLeft:20,
