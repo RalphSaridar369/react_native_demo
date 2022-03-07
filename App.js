@@ -96,7 +96,7 @@ export const App = () => {
 									<MaterialCommunityIcons name="menu" size={28} color="white" />
 								</TouchableOpacity>,
 								headerRight: props =><TouchableOpacity style={{paddingRight:20}}>
-									<MaterialCommunityIcons name="menu" size={28} color="white" />
+									<MaterialCommunityIcons name="cart-outline" size={28} color="white" />
 								</TouchableOpacity>,
 							})}
 						>
