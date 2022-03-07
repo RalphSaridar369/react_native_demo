@@ -49,10 +49,6 @@ export const App = () => {
 		runEffect()
 	}, [])
 
-	useEffect(() => {
-
-	}, [dispatch])
-
 	// <------ HEADER OPTIONS IF LOGGED IN ------> 
 	const Header = (props) => {
 		return (
