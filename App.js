@@ -95,13 +95,13 @@ export const App = () => {
 									onPress={() => navigation.toggleDrawer()}>
 									<MaterialCommunityIcons name="menu" size={28} color="white" />
 								</TouchableOpacity>,
+								headerRight: props =><TouchableOpacity style={{paddingRight:20}}>
+									<MaterialCommunityIcons name="menu" size={28} color="white" />
+								</TouchableOpacity>,
 							})}
 						>
 							<DrawerStack.Screen name="Home" component={Home} options={{
-								headerTitle: () => <Header title="Home" LoggedIn={state.LoggedIn}
-									icons={[
-										{ icon: <MaterialCommunityIcons name="login" size={24} color="white" style={styles.icon} onPress={() => alert("test")} /> },
-									]} />,
+								headerTitle: () => <Header title="Home" LoggedIn={state.LoggedIn}/>,
 							}} />
 							<DrawerStack.Screen name="About" component={AboutStack} options={{
 								headerTitle: () => <Header title="About" LoggedIn={state.LoggedIn}
