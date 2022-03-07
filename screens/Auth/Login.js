@@ -15,12 +15,18 @@ const Login = ({ navigation }) => {
     const [rememberMe, setRememberMe] = useState(false);
 
     const signIn =()=>{
-        dispatch({type: 'SIGN_IN', payload: {
-            UserData:{
-                email:'user1@yopmail.com'
-            },
-        }})
-        navigation.navigate("Home");
+        if(!email.includes("user1") || !email.includes("user2")){
+            Alert.alert("Error","Wrong Email")
+        }
+        else{
+            dispatch({type: 'SIGN_IN', payload: {
+                UserData:{
+                    email:email,
+                    usertype:email.includes("user1")?1:2,
+                },
+            }})
+            navigation.navigate("Home");
+        }
     }
 
     const settingCreds = (e, t) => {
