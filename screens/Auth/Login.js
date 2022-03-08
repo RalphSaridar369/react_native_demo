@@ -67,7 +67,7 @@ const Login = ({ navigation }) => {
     return (
         <KeyboardAvoidingView>
             <View style={styles.LogoImgContainer}>
-                <Image source={require('../../assets/logo.jpg')} style={styles.LogoImg} resizeMode='cover' />
+                <Image source={require('../../assets/logo.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
             <TextInput
                 label="Email" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}

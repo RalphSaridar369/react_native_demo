@@ -1,16 +1,20 @@
-import React, { useEffect,useContext } from 'react'
-import {View,Text} from 'react-native';
-import { MainContext } from '../../MainContext';
+import React, { useEffect, useContext } from 'react'
+import { View, ScrollView, Text } from 'react-native';
+import CarouselComponent from './components/Carousel';
+import { carouselData, products } from '../../mockData';
+import FlatlistComponent from './components/Flatlist';
 
-const Home = ({navigation}) =>{
-    const [state, dispatch] = useContext(MainContext);
-    useEffect(()=>{
-
-    },[])
-    return(
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-            <Text>{state.LoggedIn?"logged in":"not logged in"}</Text>
-            <Text onPress={()=>navigation.navigate("homeDetailed")}>Home Page</Text>
+const Home = () => {
+    return (
+        <View style={{ flex: 1, backgroundColor:'#fff'}}>
+            <ScrollView>
+                <CarouselComponent data={carouselData} loop={true} autoplay={true} enableMomentum autoplayInterval={5000}/>
+                <View style={{marginTop:20}}>
+                    <FlatlistComponent headerText="Top Products" data={products}/>
+                    <FlatlistComponent headerText="Best Selling" data={products}/>
+                    <FlatlistComponent headerText="Top Deals" data={products}/>
+                </View>
+            </ScrollView>
         </View>
     )
 }

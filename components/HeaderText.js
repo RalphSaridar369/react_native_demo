@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
         fontSize:30,
         marginTop:Platform.OS=='ios'? 50: 30,
         marginVertical:Platform.OS=='ios'? 10: 20,
-        fontFamily:'Adam-Bold'
+        fontFamily:'OpenSans-Bold',
+        color:'#FF6863'
     }
 })
 

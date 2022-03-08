@@ -29,7 +29,7 @@ export const CustomDrawer = (props) => {
 	return (
 		<DrawerContentScrollView {...props} showsVerticalScrollIndicator={false}>
 			<View style={styles.LogoImgContainer}>
-				<Image source={require('./assets/logo.jpg')} style={styles.LogoImg} resizeMode='cover' />
+				<Image source={require('./assets/logo.png')} style={styles.LogoImg} resizeMode='cover' />
 			</View>
 			{state.LoggedIn && <View style={styles.LoggedinContainer}>
 				<Text style={styles.LoggedinText}><Text style={styles.loggedInnerText}>Logged in as</Text> {state.UserData.email}</Text>
