@@ -14,7 +14,7 @@ const CustomItem = (props) =>{
 		onPress={props.onPress}
 		icon={props.icon}
 		activeBackgroundColor="transparent"
-		activeTintColor="black"
+		activeTintColor="#FF6863"
 		inactiveTintColor="black"
 	/>
 	)
@@ -39,7 +39,7 @@ export const CustomDrawer = (props) => {
 					props.navigation.navigate("Home")
 				}}
 				icon={({focused, color, size}) => (
-					<MaterialCommunityIcons name="home" size={28} color="black" />
+					<MaterialCommunityIcons name="home" size={28} color={focused?"#FF6863":"black"} />
 			)} />
 			<CustomItem label="About" 
 				onPress={() => {
