@@ -18,6 +18,7 @@ import Home from './screens/Home/Home';
 
 import { MainContext, initialState } from './MainContext.js';
 import mainReducer from './reducer/MainReducer.js';
+import { Platform } from 'react-native-web';
 
 const DrawerStack = createDrawerNavigator();
 
@@ -78,6 +79,7 @@ export const App = () => {
 				<MainContext.Provider value={[state, dispatch]}>
 					<NavigationContainer>
 						<DrawerStack.Navigator
+						 	drawerContentOptions={{ activeBackgroundColor: 'red', activeTintColor: '#ffffff' }}
 							drawerContent={(props) => (
 								<CustomDrawer
 									{...props}
@@ -86,6 +88,7 @@ export const App = () => {
 								/>
 							)}
 							screenOptions={({ navigation }) => ({
+								swipeEnabled:Platform.OS==="android",
 								headerStyle: { backgroundColor: '#FF6863' },
 								headerLeft: props => <TouchableOpacity style={{ marginHorizontal: 20 }}
 									onPress={() => navigation.toggleDrawer()}>
@@ -97,6 +100,7 @@ export const App = () => {
 							})}
 						>
 							<DrawerStack.Screen name="Home" component={Home} options={{
+								drawerIcon: config =><MaterialCommunityIcons name="home" size={28} color={config.focused?"white":"black"} />,
 								headerTitle: () => <Header title="Home" LoggedIn={state.LoggedIn}/>,
 							}} />
 							<DrawerStack.Screen name="About" component={AboutStack} options={{

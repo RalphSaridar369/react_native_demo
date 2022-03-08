@@ -10,7 +10,8 @@ const FlatlistComponent =(props)=>{
         <View style={{flex:1}}>
             <HeaderText style={styles.header_text}>{props.headerText}</HeaderText>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {props.data.map((item,index)=><TouchableOpacity key={index} style={styles.product_image_container}>
+                {props.data.map((item,index)=><TouchableOpacity key={index} style={styles.product_image_container}
+                onPress={()=>props.navigation.navigate("About")}>
                     <Image source={item.image} style={styles.product_image} resizeMode="contain"/>
                     <Text style={styles.text}>{item.name}</Text>
                 </TouchableOpacity>)}

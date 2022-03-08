@@ -2,7 +2,7 @@ import React , {useContext} from 'react';
 import {styles} from './AppStyle';
 import {View,Image} from 'react-native';
 import { Text } from './components'; 
-import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MainContext } from './MainContext';
 
@@ -34,7 +34,8 @@ export const CustomDrawer = (props) => {
 			{state.LoggedIn && <View style={styles.LoggedinContainer}>
 				<Text style={styles.LoggedinText}><Text style={styles.loggedInnerText}>Logged in as</Text> {state.UserData.email}</Text>
 			</View>}
-			<CustomItem label="Home" 
+			<DrawerItemList {...props}/>
+			{/* <CustomItem label="Home" 
 				onPress={() => {
 					props.navigation.navigate("Home")
 				}}
@@ -59,7 +60,7 @@ export const CustomDrawer = (props) => {
 				onPress={() => props.LoggedIn?clickLogout():props.navigation.navigate("Auth")}
 				icon={({focused, color, size}) => (
 					<MaterialCommunityIcons name={props.LoggedIn?"logout":"login"}  size={28} color="black" />
-			)} />
+			)} /> */}
 		</DrawerContentScrollView>
 	);
 };
