@@ -17,7 +17,13 @@ const ProductDetails = ({ route }) => {
             <View style={styles.content_container}>
                 <HeaderText style={styles.product_name}>{product?.name}</HeaderText>
                 <Text>${product?.price}</Text>
-                <CartButtons />
+                <View style={styles.items_container}>
+                    <CartButtons style={styles.buttons_container}/>
+                    <View style={styles.total_container}>
+                        <HeaderText style={styles.total_label}>Total</HeaderText>
+                        <HeaderText style={styles.total_value}>$200</HeaderText>
+                    </View>
+                </View>
             </View>
         </ScrollView>
     )
