@@ -7,11 +7,11 @@ const CartButtons = (props) => {
     return (
         <View style={styles.main}>
             <View style={styles.buttons_container}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>props.remove()}>
                     <AntDesign name="minuscircleo" size={34} color="#FF6863" />
                 </TouchableOpacity>
-                <HeaderText style={styles.items}>0</HeaderText>
-                <TouchableOpacity>
+                <HeaderText style={styles.items}>{props.count}</HeaderText>
+                <TouchableOpacity onPress={()=>props.add()}>
                     <AntDesign name="pluscircleo" size={34} color="#FF6863" />
                 </TouchableOpacity>
             </View>
