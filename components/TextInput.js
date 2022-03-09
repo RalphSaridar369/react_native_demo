@@ -9,9 +9,9 @@ export const TextInputComponent = ({ left, right, ...props }) => {
         <View style={[styles.container,props.containerStyle]}>
             <TextInput
                 {...props}
-                activeOutlineColor='#31C2AA'
-                selectionColor='#31C2AA'
-                activeUnderlineColor='#31c2aa'
+                activeOutlineColor='#FF6863'
+                selectionColor='#FF6863'
+                activeUnderlineColor='#FF6863'
                 mode={props.variant?props.variant:  Platform.OS=='ios'?'flat':'outlined'}
                 style={[styles.textInput,Platform.OS==='ios' && props.style?props.style:Platform.OS==='ios'?styles.ios:styles.android, props.style]}
                 left={left ?<TextInput.Icon name={left=='search'?()=><MaterialIcons name="search" color="black" size={20} />:left}  style={{marginTop:14}}/> : null}
@@ -28,9 +28,9 @@ export const PassInputComponent = ({ left, right, ...props }) => {
         <View style={styles.container}>
             <TextInput
                 {...props}
-                activeOutlineColor='#31C2AA'
-                selectionColor='#31C2AA'
-                activeUnderlineColor='#31c2aa'
+                activeOutlineColor='#FF6863'
+                selectionColor='#FF6863'
+                activeUnderlineColor='#FF6863'
                 secureTextEntry={show}
                 mode={props.variant?props.variant:Platform.OS=='ios'?'flat':'outlined'}
                 style={[styles.textInput,Platform.OS==='ios' && props.style?props.style:Platform.OS==='ios'?styles.ios:styles.android]}
