@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
     },
     total_value: {
         marginTop: 0,
+        color:'black',
         alignSelf: 'center',
         fontSize: 22
     }
