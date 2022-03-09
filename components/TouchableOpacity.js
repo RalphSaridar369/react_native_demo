@@ -6,7 +6,7 @@ const TouchableOpacityComponent = (props) =>{
     return(
         <TouchableOpacity onPress={()=>props.onPress()} style={[chosenStyles,styles.base,props.style]} >
             <Text style={{
-                color:!props.settings.includes("outlined")?"#fff":props.settings.includes("danger")?"red":"green",
+                color:props.settings.includes("outlined")?"#FF6863":props.settings.includes("danger")?"red":"green",
                 fontFamily:'OpenSans-Medium',
                 fontSize:20,
             }}>{props.text}</Text>
@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
         backgroundColor:'#313783',
     },
     outlined:{
-        backgroundColor:null
+        backgroundColor:null,
+        borderColor:'#FF6863',
+        borderWidth:1
     },
 })
 

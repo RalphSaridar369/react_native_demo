@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         color:'#fff',
     },
     primary:{
-        color:'green',
+        color:'#FF6863',
     },
     danger:{
         color:'red',

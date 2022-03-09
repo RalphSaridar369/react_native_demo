@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { View, Image, Alert } from 'react-native';
-import { MainContext } from '../../MainContext';
-import { formValidator } from '../../helpers/formValidator';
-import { TextInput, PassInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox } from '../../components';
+import { MainContext } from '../../../MainContext';
+import { formValidator } from '../../../helpers/formValidator';
+import { TextInput, PassInput, Link, TouchableOpacity, KeyboardAvoidingView, CheckBox } from '../../../components';
 import { styles } from './LoginStyle';
-import { storeData, removeKey, getData } from '../../helpers/asyncStorage';
-import { emptyString } from '../../helpers/emptyString';
-import AlertComponent from '../../components/Alert';
+import { storeData, removeKey, getData } from '../../../helpers/asyncStorage';
+import { emptyString } from '../../../helpers/emptyString';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Login = ({ navigation }) => {
 
@@ -65,17 +65,22 @@ const Login = ({ navigation }) => {
     }, [setUserCred])
 
     return (
+        
+      <LinearGradient
+      // Background Linear Gradient
+        colors={['#FF6863', '#fff', '#fff']}
+      style={{flex:1}}
+    >
         <KeyboardAvoidingView>
             <View style={styles.LogoImgContainer}>
-                <Image source={require('../../assets/logo.png')} style={styles.LogoImg} resizeMode='cover' />
+                <Image source={require('../../../assets/logo.png')} style={styles.LogoImg} resizeMode='cover' />
             </View>
             <TextInput
-                label="Email" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}
-                left="account-outline"
+                label="Email" style={Platform.OS==='ios' &&{ height:40}}  variant="outlined" onChangeText={(e) => settingCreds(e, "email")} value={userCred.email}
+                left="email-outline"
             />
             <PassInput
-                label="Password" onChangeText={(e) => settingCreds(e, "password")} value={userCred.password}
-                left="lock-outline"
+                label="Password" style={Platform.OS==='ios' &&{ height:40}} variant="outlined" onChangeText={(e) => settingCreds(e, "password")} value={userCred.password}
             />
             <View>
                 <CheckBox
@@ -87,6 +92,7 @@ const Login = ({ navigation }) => {
                 settings={["primary", "outlined"]} />
             <Link text={"Register"} settings={["primary", "underline"]} onPress={() => navigation.navigate("Auth", { screen: 'register' })} />
         </KeyboardAvoidingView>
+        </LinearGradient>
     )
 }
 

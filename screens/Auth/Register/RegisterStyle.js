@@ -1,11 +1,19 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    loginContainer: {
+    login_container: {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        flex: 1
+        flex: 1,
+        backgroundColor:'#FF6863'
+    },
+    card:{
+        backgroundColor:'#fff',
+        marginVertical:30,
+        paddingVertical:30,
+        padding:20,
+        borderRadius:40
     },
     Button: {
         alignItems: 'center',
@@ -21,13 +29,5 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         textAlignVertical: 'center',
         height: 300
-    },
-    LogoImgContainer: {
-        alignItems: 'center',
-        marginBottom: 30
-    },
-    LogoImg: {
-        width: 200,
-        height: 200,
     },
 })
