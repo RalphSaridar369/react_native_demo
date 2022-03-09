@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import {Text, KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
-import { useContext } from 'react';
-import { MainContext } from '../../MainContext';
-import TextInput from '../../components/TextInput';
+import TextInput from '../../../components/TextInput';
 
 const Products = () =>{
     return(

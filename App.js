@@ -10,9 +10,10 @@ import { Dimensions, Text, View, StyleSheet, TouchableOpacity } from 'react-nati
 import useFonts from './assets/Fonts/Hook';
 import { clearAll, getData, storeData } from './helpers/asyncStorage';
 
+//importing stacks
 import AboutStack from './navigations/AboutStack';
 import AuthStack from './navigations/AuthStack';
-import Products from './screens/Products/Products';
+import ProductStack from './navigations/ProductStack';
 
 import Home from './screens/Home/Home';
 
@@ -108,7 +109,7 @@ export const App = () => {
 								/>
 							}} />
 							<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
-							<DrawerStack.Screen name="Products" component={Products} options={{
+							<DrawerStack.Screen name="Products" component={ProductStack} options={{
 								headerTitle: () => <Header title="Products" LoggedIn={state.LoggedIn}
 								/>
 							}} />
