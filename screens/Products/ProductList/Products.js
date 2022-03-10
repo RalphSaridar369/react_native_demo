@@ -1,24 +1,19 @@
 import React, { useEffect } from 'react'
-import {Text, KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
-import TextInput from '../../../components/TextInput';
-
+import {View, ScrollView} from 'react-native';
+import { products } from '../../../mockData';
+import Header from './components/Header';
+import { styles } from './styles';
+import FlatListComponent from './components/FlatList';
 const Products = () =>{
     return(
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.container}
-        >
-        <TextInput 
-            main={{placeholder:"Email", value:'test'}} />
-        </KeyboardAvoidingView>
+        <View style={styles.main}>
+          <Header />
+          <ScrollView>
+            <FlatListComponent data={products}/>
+          </ScrollView>
+        </View>
     )
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent:'center'
-    },
-})
 
 export default Products

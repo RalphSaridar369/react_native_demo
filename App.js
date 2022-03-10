@@ -80,7 +80,6 @@ export const App = () => {
 				<MainContext.Provider value={[state, dispatch]}>
 					<NavigationContainer>
 						<DrawerStack.Navigator
-						 	drawerContentOptions={{ activeBackgroundColor: 'red', activeTintColor: '#ffffff' }}
 							drawerContent={(props) => (
 								<CustomDrawer
 									{...props}
