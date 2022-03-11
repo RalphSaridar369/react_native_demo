@@ -20,6 +20,7 @@ import Home from './screens/Home/Home';
 import { MainContext, initialState } from './MainContext.js';
 import mainReducer from './reducer/MainReducer.js';
 import { Platform } from 'react-native-web';
+import Cart from './screens/Cart/Cart';
 
 const DrawerStack = createDrawerNavigator();
 
@@ -94,7 +95,7 @@ export const App = () => {
 									onPress={() => navigation.toggleDrawer()}>
 									<MaterialCommunityIcons name="menu" size={28} color="white" />
 								</TouchableOpacity>,
-								headerRight: props =><TouchableOpacity style={{paddingRight:20}}>
+								headerRight: props =><TouchableOpacity style={{paddingRight:20}} onPress={()=>navigation.navigate("Cart")}>
 									<MaterialCommunityIcons name="cart-outline" size={28} color="white" />
 								</TouchableOpacity>,
 							})}
@@ -108,6 +109,8 @@ export const App = () => {
 								/>
 							}} />
 							<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
+							<DrawerStack.Screen name="Cart" component={Cart} options={{
+								headerTitle: () => <Header title="Cart" LoggedIn={state.LoggedIn}/>}} />
 							<DrawerStack.Screen name="Products" component={ProductStack} options={{
 								headerTitle: () => <Header title="Products" LoggedIn={state.LoggedIn}
 								/>

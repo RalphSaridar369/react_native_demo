@@ -10,6 +10,8 @@ const mainReducer = (state, action) => {
     case 'SIGN_OUT':
       clearAll();
       return { ...initialState, UserData: null, LoggedIn: false }
+    case 'ADD_TO_CART':
+      return { ...initialState, cart:state.cart.push(action.payload.data) }
   }
 };
 

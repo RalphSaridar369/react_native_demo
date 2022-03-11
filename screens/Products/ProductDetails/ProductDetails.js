@@ -1,17 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ScrollView, View, Image, Alert } from 'react-native';
 import { Text, HeaderText, TouchableOpacity } from '../../../components';
+import { MainContext } from '../../../MainContext';
 import CartButtons from './components/CartButtons';
 import { styles } from './styles';
 
 const ProductDetails = ({ route }) => {
     const [product, setProduct] = useState();
     const [count, setCount] = useState(0);
+    const [state,dispatch] = useContext(MainContext)
 
     useEffect(() => {
         console.log("Product", route.params.product)
         setProduct(route.params.product)
     }, [])
+
+    const confirmAddToCart = () =>{
+        dispatch({type: 'ADD_TO_CART', payload: {
+            data:{
+                product:route.params.product,
+                qty:count,
+                total:count * route.params.product.price
+            },
+        }})
+    }
 
     const addToCart = () => {
         if(count<1)
@@ -19,7 +31,7 @@ const ProductDetails = ({ route }) => {
         else
         Alert.alert("Add to cart", "Are you sure you want to add to cart?", [
             { text: "No" },
-            { text: "Yes" },
+            { text: "Yes", onPress:()=> confirmAddToCart()},
         ]);
     }
 
