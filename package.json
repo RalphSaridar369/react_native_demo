@@ -23,9 +23,11 @@
     "expo-document-picker": "~10.1.0",
     "expo-font": "~10.0.4",
     "expo-image-picker": "~12.0.1",
+    "expo-linear-gradient": "~11.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-actions-sheet": "^0.6.0",
     "react-native-element-dropdown": "^1.6.1",
     "react-native-paper": "^4.11.1",
     "react-native-phone-number-input": "^2.1.0",
@@ -36,8 +38,7 @@
     "react-native-sectioned-multi-select": "^0.9.1",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "0.17.1",
-    "yup": "^0.32.11",
-    "expo-linear-gradient": "~11.0.3"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

@@ -2,11 +2,11 @@ import { View, TextInput, StyleSheet, Dimensions, TouchableOpacity } from 'react
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 
 const screenWidth = Dimensions.get('screen').width
-const Header = () => {
+const Header = (props) => {
     return (
         <View style={styles.main}>
             <View style={styles.search_bar}>
-                <TextInput placeholder="Search" style={styles.search_bar_input} />
+                <TextInput placeholder="Search" style={styles.search_bar_input} value={props.search} onChangeText={(e)=>props.onChangeText(e)}/>
                 <AntDesign name="search1" size={24} color="black" style={styles.search_icon} />
             </View>
             <View style={styles.icons_container}>

@@ -88,7 +88,7 @@ export const App = () => {
 								/>
 							)}
 							screenOptions={({ navigation }) => ({
-								swipeEnabled:Platform.OS==="android",
+								swipeEnabled:Platform.OS=="android",
 								headerStyle: { backgroundColor: '#FF6863' },
 								headerLeft: props => <TouchableOpacity style={{ marginHorizontal: 20 }}
 									onPress={() => navigation.toggleDrawer()}>
