@@ -12,6 +12,8 @@ const mainReducer = (state, action) => {
       return { ...initialState, UserData: null, LoggedIn: false }
     case 'ADD_TO_CART':
       return { ...initialState, cart:state.cart.push(action.payload.data) }
+    case 'REMOVE_FROM_CART':
+      return { ...initialState, cart:state.cart.filter((item)=>item.product.id == action.id) }
   }
 };
 

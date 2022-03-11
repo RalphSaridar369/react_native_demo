@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import {View} from 'react-native';
+import {View, Alert} from 'react-native';
 import { MainContext } from '../../MainContext';
 import ScrollViewComponent from './components/ScrollView';
 import { styles } from './styles';
@@ -14,6 +14,12 @@ const Cart =()=>{
         setData(state.cart)
     },[])
 
+    const removeProduct =(id)=>{
+        console.log(id)
+        dispatch('REMOVE_FROM_CART',{id:id})
+        Alert.alert("Product","Product was removed from the cart")
+    }
+
     const calculateTotal = () =>{
         let total = 0;
         state.cart.map((item)=>{
@@ -26,9 +32,9 @@ const Cart =()=>{
 
     return(
         <View style={{flex:1}}>
-            {data &&<ScrollViewComponent data={data}/>}
+            {data &&<ScrollViewComponent data={data} removeProduct={removeProduct}/>}
             <View style={styles.total}>
-                <HeaderText style={styles.total_label}>TOTAL</HeaderText>
+                <HeaderText style={styles.total_label}>Total</HeaderText>
                 <Text style={styles.total_value}>${calculateTotal()}</Text>
             </View>
         </View>
