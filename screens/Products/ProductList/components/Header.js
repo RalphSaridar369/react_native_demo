@@ -10,10 +10,10 @@ const Header = (props) => {
                 <AntDesign name="search1" size={24} color="black" style={styles.search_icon} />
             </View>
             <View style={styles.icons_container}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>props.show("filter")}>
                     <AntDesign name="filter" size={34} color="black" />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>props.show("sort")}>
                     <FontAwesome name="sort" size={34} color="black" />
                 </TouchableOpacity>
             </View>
