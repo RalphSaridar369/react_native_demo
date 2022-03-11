@@ -11,9 +11,14 @@ const mainReducer = (state, action) => {
       clearAll();
       return { ...initialState, UserData: null, LoggedIn: false }
     case 'ADD_TO_CART':
-      return { ...initialState, cart:state.cart.push(action.payload.data) }
+      let cart = state.cart;
+      cart.push(action.payload.data)
+      return { ...initialState, cart:cart }
     case 'REMOVE_FROM_CART':
-      return { ...initialState, cart:state.cart.filter((item)=>item.product.id == action.id) }
+      let cart_products = state.cart;
+      cart_products.filter((item)=>item.product.id != action.payload.id)
+      console.log("car_products",cart_products)
+      return { ...initialState, cart:state.cart.filter((item)=>item.product.id != action.payload.id) }
   }
 };
 

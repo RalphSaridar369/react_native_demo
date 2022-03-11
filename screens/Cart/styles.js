@@ -1,5 +1,6 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 
+let screenWidth = Dimensions.get('screen').width;
 export const styles = StyleSheet.create({
     total:{
         backgroundColor:'#FF6863',
@@ -8,7 +9,10 @@ export const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between'
+        justifyContent:'space-between',
+        position:'absolute',
+        bottom:0,
+        width:screenWidth
     },
     total_label:{
         color:'white',

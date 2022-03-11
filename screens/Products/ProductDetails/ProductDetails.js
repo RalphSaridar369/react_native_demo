@@ -1,38 +1,42 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { ScrollView, View, Image, Alert } from 'react-native';
 import { Text, HeaderText, TouchableOpacity } from '../../../components';
 import { MainContext } from '../../../MainContext';
 import CartButtons from './components/CartButtons';
 import { styles } from './styles';
+import { useFocusEffect } from '@react-navigation/native';
 
 const ProductDetails = ({ route }) => {
     const [product, setProduct] = useState();
     const [count, setCount] = useState(0);
-    const [state,dispatch] = useContext(MainContext)
+    const [state, dispatch] = useContext(MainContext)
 
-    useEffect(() => {
-        console.log("Product", route.params.product)
-        setProduct(route.params.product)
-    }, [])
+    useFocusEffect(
+        useCallback(() => {
+            setProduct(route.params.product)
+        }, []))
 
-    const confirmAddToCart = () =>{
-        dispatch({type: 'ADD_TO_CART', payload: {
-            data:{
-                product:route.params.product,
-                qty:count,
-                total:count * route.params.product.price
-            },
-        }})
+    const confirmAddToCart = () => {
+        dispatch({
+            type: 'ADD_TO_CART', payload: {
+                data: {
+                    product: route.params.product,
+                    qty: count,
+                    total: count * route.params.product.price
+                },
+            }
+        })
+        Alert.alert("Product", "Product added successfully");
     }
 
     const addToCart = () => {
-        if(count<1)
-            Alert.alert("Error","Please add the product first");
+        if (count < 1)
+            Alert.alert("Error", "Please add the product first");
         else
-        Alert.alert("Add to cart", "Are you sure you want to add to cart?", [
-            { text: "No" },
-            { text: "Yes", onPress:()=> confirmAddToCart()},
-        ]);
+            Alert.alert("Add to cart", "Are you sure you want to add to cart?", [
+                { text: "No" },
+                { text: "Yes", onPress: () => confirmAddToCart() },
+            ]);
     }
 
     const addOrRemove = (type) => {

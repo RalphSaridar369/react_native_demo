@@ -32,7 +32,8 @@ const ScrollViewComponent = (props) => {
 
 const styles = StyleSheet.create({
     scroll_view: {
-        padding: 20
+        padding: 20,
+        marginBottom:80,
     },
     card: {
         marginBottom: 20,
@@ -46,7 +47,8 @@ const styles = StyleSheet.create({
         marginTop:20
     },
     image: {
-        width: '100%'
+        width: '100%',
+        height:100
     },
     name: {
         fontFamily: 'OpenSans-Bold'

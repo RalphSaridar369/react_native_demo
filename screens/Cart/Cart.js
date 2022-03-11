@@ -1,22 +1,25 @@
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useContext, useCallback, useState} from 'react'
 import {View, Alert} from 'react-native';
 import { MainContext } from '../../MainContext';
 import ScrollViewComponent from './components/ScrollView';
 import { styles } from './styles';
 import { HeaderText, Text } from '../../components';
+import { useFocusEffect } from '@react-navigation/native';
 
 const Cart =()=>{
     const [state,dispatch] = useContext(MainContext);
     const [data,setData] = useState([]);
 
-    useEffect(()=>{
-        console.log(state.cart);
-        setData(state.cart)
-    },[])
+    
+    useFocusEffect(
+        useCallback(() => {
+            setData(state.cart)
+        }, []))
 
     const removeProduct =(id)=>{
         console.log(id)
-        dispatch('REMOVE_FROM_CART',{id:id})
+        dispatch({type:'REMOVE_FROM_CART',payload:{id:id}})
+        setData(data.filter((item)=>item.product.id != id))
         Alert.alert("Product","Product was removed from the cart")
     }
 
@@ -32,10 +35,10 @@ const Cart =()=>{
 
     return(
         <View style={{flex:1}}>
-            {data &&<ScrollViewComponent data={data} removeProduct={removeProduct}/>}
+            {data.length>0 &&<ScrollViewComponent data={data} removeProduct={removeProduct}/>}
             <View style={styles.total}>
                 <HeaderText style={styles.total_label}>Total</HeaderText>
-                <Text style={styles.total_value}>${calculateTotal()}</Text>
+                <Text style={styles.total_value}>${data.length>0 ?calculateTotal():0}</Text>
             </View>
         </View>
     )
