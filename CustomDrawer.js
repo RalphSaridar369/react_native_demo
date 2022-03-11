@@ -34,8 +34,8 @@ export const CustomDrawer = (props) => {
 			{state.LoggedIn && <View style={styles.LoggedinContainer}>
 				<Text style={styles.LoggedinText}><Text style={styles.loggedInnerText}>Logged in as</Text> {state.UserData.email}</Text>
 			</View>}
-			<DrawerItemList {...props}/>
-			{/* <CustomItem label="Home" 
+			{/* <DrawerItemList {...props}/> */}
+			<CustomItem label="Home" 
 				onPress={() => {
 					props.navigation.navigate("Home")
 				}}
@@ -51,7 +51,7 @@ export const CustomDrawer = (props) => {
 			)} />
 			{props.LoggedIn && <CustomItem label="Products" 
 				onPress={() => {
-					props.navigation.navigate("Products")
+					props.navigation.navigate("Products",{screen:'products'})
 				}}
 				icon={({focused, color, size}) => (
 					<MaterialCommunityIcons name="zip-box-outline" size={28} color="black" />
@@ -60,7 +60,7 @@ export const CustomDrawer = (props) => {
 				onPress={() => props.LoggedIn?clickLogout():props.navigation.navigate("Auth")}
 				icon={({focused, color, size}) => (
 					<MaterialCommunityIcons name={props.LoggedIn?"logout":"login"}  size={28} color="black" />
-			)} /> */}
+			)} />
 		</DrawerContentScrollView>
 	);
 };
