@@ -32,8 +32,8 @@ export const CustomDrawer = (props) => {
 				<Image source={require('./assets/logo.png')} style={styles.logo_img} resizeMode='cover' />
 			</View>
 			{state.LoggedIn && <View style={styles.loggedin_container}>
-				<Text style={styles.usertype}>{state.UserData.usertype==1?"Buyer":"Seller"}</Text>
-				<Text style={styles.loggedin_text}><Text style={styles.logged_inner_text}>Logged in as</Text> {state.UserData.email}</Text>
+				<Text style={styles.usertype}>{state?.UserData?.usertype==1?"Buyer":"Seller"}</Text>
+				<Text style={styles.loggedin_text}><Text style={styles.logged_inner_text}>Logged in as</Text> {state?.UserData?.email}</Text>
 			</View>}
 			{/* <DrawerItemList {...props}/> */}
 			<CustomItem label="Home"

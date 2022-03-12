@@ -58,7 +58,7 @@ export const App = () => {
 		return (
 			<View style={styles.headerContainer}>
 				<Text style={styles.title}>{props.title}</Text>
-				{(state.LoggedIn && props?.icons != undefined) && <View style={styles.iconContainer}>
+				{(state?.LoggedIn && props?.icons != undefined) && <View style={styles.iconContainer}>
 					{props.icons.map((item, index) => <View key={index}>{item.icon}</View>)}
 				</View>}
 			</View>
@@ -85,8 +85,8 @@ export const App = () => {
 							drawerContent={(props) => (
 								<CustomDrawer
 									{...props}
-									LoggedIn={state.LoggedIn}
-									UserData={state.UserData}
+									LoggedIn={state?.LoggedIn}
+									UserData={state?.UserData}
 								/>
 							)}
 							screenOptions={({ navigation }) => ({
@@ -96,28 +96,28 @@ export const App = () => {
 									onPress={() => navigation.toggleDrawer()}>
 									<MaterialCommunityIcons name="menu" size={28} color="white" />
 								</TouchableOpacity>,
-								headerRight: props =>state.LoggedIn?<TouchableOpacity style={{paddingRight:20}} onPress={()=>navigation.navigate(state.UserData.usertype==1?"Cart":"Dashboard")}>
-									<MaterialCommunityIcons name={state.UserData.usertype==1?"cart-outline":"view-dashboard-outline"} size={28} color="white" />
+								headerRight: props =>state?.LoggedIn?<TouchableOpacity style={{paddingRight:20}} onPress={()=>navigation.navigate(state?.UserData?.usertype==1?"Cart":"Dashboard")}>
+									<MaterialCommunityIcons name={state?.UserData?.usertype==1?"cart-outline":"view-dashboard-outline"} size={28} color="white" />
 								</TouchableOpacity>:null,
 							})}
 						>
 							<DrawerStack.Screen name="Home" component={Home} options={{
 								drawerIcon: config =><MaterialCommunityIcons name="home" size={28} color={config.focused?"white":"black"} />,
-								headerTitle: () => <Header title="Home" LoggedIn={state.LoggedIn}/>,
+								headerTitle: () => <Header title="Home" LoggedIn={state?.LoggedIn}/>,
 							}} />
 							<DrawerStack.Screen name="About" component={About} options={{
-								headerTitle: () => <Header title="About" LoggedIn={state.LoggedIn}
+								headerTitle: () => <Header title="About" LoggedIn={state?.LoggedIn}
 								/>
 							}} />
 							<DrawerStack.Screen name="Auth" component={AuthStack} options={{ headerShown: false }} />
 							<DrawerStack.Screen name="Cart" component={Cart} options={{
-								headerTitle: () => <Header title="Cart" LoggedIn={state.LoggedIn}/>}} />
+								headerTitle: () => <Header title="Cart" LoggedIn={state?.LoggedIn}/>}} />
 							<DrawerStack.Screen name="Products" component={ProductStack} options={{
-								headerTitle: () => <Header title="Products" LoggedIn={state.LoggedIn}
+								headerTitle: () => <Header title="Products" LoggedIn={state?.LoggedIn}
 								/>
 							}} />
 							<DrawerStack.Screen name="Dashboard" component={Dashboard} options={{
-								headerTitle: () => <Header title="Dashboard" LoggedIn={state.LoggedIn}
+								headerTitle: () => <Header title="Dashboard" LoggedIn={state?.LoggedIn}
 								/>
 							}} />
 						</DrawerStack.Navigator>

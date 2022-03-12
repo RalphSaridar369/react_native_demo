@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems:'center',
     },
     text:{
-        fontFamily:'Adam-Bold'
+        fontFamily:'OpenSans-Bold'
     }
 })
 

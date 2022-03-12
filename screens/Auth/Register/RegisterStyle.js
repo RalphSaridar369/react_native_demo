@@ -15,19 +15,9 @@ export const styles = StyleSheet.create({
         padding:20,
         borderRadius:40
     },
-    Button: {
-        alignItems: 'center',
-        backgroundColor: 'blue',
-        width: 200,
-        marginVertical: 10,
-        paddingVertical: 10
-    },
-    ButtonText: {
-        color: '#fff'
-    },
-    Header: {
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        height: 300
-    },
+    radiobutton_container:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+        marginBottom:20
+    }
 })

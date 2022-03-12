@@ -31,9 +31,6 @@ const Products = ({ navigation }) => {
       setFilteredProducts(products)
     }, []))
 
-  useEffect(() => {
-
-  }, [filteredProducts])
   const show = (type) => {
     console.log("tesrt")
     if (type == "filter")

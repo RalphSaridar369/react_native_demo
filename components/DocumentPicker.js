@@ -38,7 +38,7 @@ const DocumentPickerComponent = (props) =>{
             <View>
                 {props.rightIcon ? 
                 props.rightIcon.icon :
-                !props?.value[0]?.doc_title?
+                !props?.value?.doc_title?
                 <AntDesign name="closecircleo" size={24} color="red" />:
                 <AntDesign name="checkcircleo" size={24} color="green" />}    
             </View>
