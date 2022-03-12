@@ -1,30 +1,30 @@
-import React , {useContext} from 'react';
-import {styles} from './AppStyle';
-import {View,Image} from 'react-native';
-import { Text } from './components'; 
+import React, { useContext } from 'react';
+import { styles } from './AppStyle';
+import { View, Image } from 'react-native';
+import { Text } from './components';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons';
 import { MainContext } from './MainContext';
 
-const CustomItem = (props) =>{
-	return(
+const CustomItem = (props) => {
+	return (
 		<DrawerItem
-		label={props.label}
-		labelStyle={{fontFamily:'OpenSans-Medium'}}
-		onPress={props.onPress}
-		icon={props.icon}
-		activeBackgroundColor="transparent"
-		activeTintColor="#FF6863"
-		inactiveTintColor="black"
-	/>
+			label={props.label}
+			labelStyle={{ fontFamily: 'OpenSans-Medium' }}
+			onPress={props.onPress}
+			icon={props.icon}
+			activeBackgroundColor="transparent"
+			activeTintColor="#FF6863"
+			inactiveTintColor="black"
+		/>
 	)
 }
 
 
 export const CustomDrawer = (props) => {
-    const [state, dispatch] = useContext(MainContext);
-	const clickLogout = () =>{
-        dispatch({type: 'SIGN_OUT'})
+	const [state, dispatch] = useContext(MainContext);
+	const clickLogout = () => {
+		dispatch({ type: 'SIGN_OUT' })
 	}
 	return (
 		<DrawerContentScrollView {...props} showsVerticalScrollIndicator={false}>
@@ -35,32 +35,48 @@ export const CustomDrawer = (props) => {
 				<Text style={styles.LoggedinText}><Text style={styles.loggedInnerText}>Logged in as</Text> {state.UserData.email}</Text>
 			</View>}
 			{/* <DrawerItemList {...props}/> */}
-			<CustomItem label="Home" 
+			<CustomItem label="Home"
 				onPress={() => {
 					props.navigation.navigate("Home")
 				}}
-				icon={({focused, color, size}) => (
-					<MaterialCommunityIcons name="home" size={28} color={focused?"#FF6863":"black"} />
-			)} />
-			<CustomItem label="About" 
+				icon={({ focused, color, size }) => (
+					<MaterialCommunityIcons name="home-outline" size={28} color={focused ? "#FF6863" : "black"} />
+				)} />
+			{props.LoggedIn &&  (props.UserData.usertype==1?
+			<CustomItem label="Cart"
+				onPress={() => {
+					props.navigation.navigate("Cart")
+				}}
+				icon={({ focused, color, size }) => (
+					<MaterialCommunityIcons name="cart-outline" size={28} color="black" />
+				)} />:
+				<CustomItem label="Dashboard"
+					onPress={() => {
+						props.navigation.navigate("Dashboard")
+					}}
+					icon={({ focused, color, size }) => (
+						<MaterialCommunityIcons name="view-dashboard-outline" size={28} color="black" />
+					)} />
+				)}
+			{props.LoggedIn && <CustomItem label="Products"
+				onPress={() => {
+					props.navigation.navigate("Products", { screen: 'products' })
+				}}
+				icon={({ focused, color, size }) => (
+					<Feather name="box" size={28} color="black" />
+				)} />}
+			<CustomItem label="About"
 				onPress={() => {
 					props.navigation.navigate("About")
 				}}
-				icon={({focused, color, size}) => (
-					<MaterialCommunityIcons name="account-question" size={28} color="black" />
-			)} />
-			{props.LoggedIn && <CustomItem label="Products" 
-				onPress={() => {
-					props.navigation.navigate("Products",{screen:'products'})
-				}}
-				icon={({focused, color, size}) => (
-					<MaterialCommunityIcons name="zip-box-outline" size={28} color="black" />
-			)} />}
-			<CustomItem label={props.LoggedIn?"Logout":"Login"} 
-				onPress={() => props.LoggedIn?clickLogout():props.navigation.navigate("Auth")}
-				icon={({focused, color, size}) => (
-					<MaterialCommunityIcons name={props.LoggedIn?"logout":"login"}  size={28} color="black" />
-			)} />
+				icon={({ focused, color, size }) => (
+					<MaterialCommunityIcons name="head-question-outline" size={28} color="black" />
+				)} />
+			<CustomItem label={props.LoggedIn ? "Logout" : "Login"}
+				onPress={() => props.LoggedIn ? clickLogout() : props.navigation.navigate("Auth")}
+				icon={({ focused, color, size }) => (
+					<MaterialCommunityIcons name={props.LoggedIn ? "logout" : "login"} size={28} color="black" />
+				)} />
 		</DrawerContentScrollView>
 	);
 };

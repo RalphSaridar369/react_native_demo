@@ -1,5 +1,4 @@
 import { clearAll, storeData } from "../helpers/asyncStorage";
-import { initialState } from "../MainContext";
 // reducer function
 
 const mainReducer = (state, action) => {

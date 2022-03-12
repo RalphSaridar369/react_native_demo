@@ -14,6 +14,16 @@ const Login = ({ navigation }) => {
     const [userCred, setUserCred] = useState({ email: '', password: '' });
     const [rememberMe, setRememberMe] = useState(false);
 
+    const confirmSignIn =(choice)=>{
+        dispatch({type: 'SIGN_IN', payload: {
+            UserData:{
+                email:userCred.email,
+                usertype:choice,
+            },
+        }})
+        navigation.navigate("Home");
+    }
+
     const signIn =()=>{
         let email = userCred.email;
         console.log(email)
@@ -21,13 +31,10 @@ const Login = ({ navigation }) => {
             Alert.alert("Error","Wrong Email")
         }
         else{
-            dispatch({type: 'SIGN_IN', payload: {
-                UserData:{
-                    email:email,
-                    usertype:email.includes("user1")?1:2,
-                },
-            }})
-            navigation.navigate("Home");
+           Alert.alert("Sign in","Do you want to sign in as a seller",[
+                {text:"No", onPress:()=>confirmSignIn(1)},
+                {text:"Yes", onPress:()=>confirmSignIn(2)},
+            ])
         }
     }
 
