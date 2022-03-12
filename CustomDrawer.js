@@ -28,11 +28,12 @@ export const CustomDrawer = (props) => {
 	}
 	return (
 		<DrawerContentScrollView {...props} showsVerticalScrollIndicator={false}>
-			<View style={styles.LogoImgContainer}>
-				<Image source={require('./assets/logo.png')} style={styles.LogoImg} resizeMode='cover' />
+			<View style={styles.logo_img_container}>
+				<Image source={require('./assets/logo.png')} style={styles.logo_img} resizeMode='cover' />
 			</View>
-			{state.LoggedIn && <View style={styles.LoggedinContainer}>
-				<Text style={styles.LoggedinText}><Text style={styles.loggedInnerText}>Logged in as</Text> {state.UserData.email}</Text>
+			{state.LoggedIn && <View style={styles.loggedin_container}>
+				<Text style={styles.usertype}>{state.UserData.usertype==1?"Buyer":"Seller"}</Text>
+				<Text style={styles.loggedin_text}><Text style={styles.logged_inner_text}>Logged in as</Text> {state.UserData.email}</Text>
 			</View>}
 			{/* <DrawerItemList {...props}/> */}
 			<CustomItem label="Home"
