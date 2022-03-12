@@ -13,8 +13,13 @@ const ProductDetails = ({ route }) => {
 
     useFocusEffect(
         useCallback(() => {
+            console.log(route.params.product)
             setProduct(route.params.product)
         }, []))
+
+    useEffect(()=>{
+        setProduct(route.params.product)
+    },[route.params.product])
 
     const confirmAddToCart = () => {
         dispatch({

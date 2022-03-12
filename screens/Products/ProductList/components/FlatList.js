@@ -9,7 +9,7 @@ const FlatListComponent = (props) => {
             numColumns={2}
             data={props.data}
             renderItem={({ item, index }) => (
-                <TouchableOpacity key={index} style={styles.card}>
+                <TouchableOpacity key={index} style={styles.card} onPress={()=>props.navigation.navigate("productDetails",{product:item})}>
                     <Image source ={item.image} style={styles.image} resizeMode="contain"/>
                     <HeaderText style={styles.name}>{item.name}</HeaderText>
                     <Text style={styles.text}>${item.price}</Text>
