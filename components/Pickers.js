@@ -119,7 +119,7 @@ export const Normal = (props) => {
   // },[])
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-
+  console.log("Props",props)
   return (
     <SafeAreaView style={[styles2.dropdown]}>
       <TouchableOpacity onPress={() => setOpen(!open)}>

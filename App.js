@@ -11,11 +11,11 @@ import useFonts from './assets/Fonts/Hook';
 import { clearAll, getData, storeData } from './helpers/asyncStorage';
 
 //importing stacks
-import AboutStack from './navigations/AboutStack';
 import AuthStack from './navigations/AuthStack';
 import ProductStack from './navigations/ProductStack';
 
 import Home from './screens/Home/Home';
+import About from './screens/About/About';
 
 import { MainContext, initialState } from './MainContext.js';
 import mainReducer from './reducer/MainReducer.js';
@@ -104,7 +104,7 @@ export const App = () => {
 								drawerIcon: config =><MaterialCommunityIcons name="home" size={28} color={config.focused?"white":"black"} />,
 								headerTitle: () => <Header title="Home" LoggedIn={state.LoggedIn}/>,
 							}} />
-							<DrawerStack.Screen name="About" component={AboutStack} options={{
+							<DrawerStack.Screen name="About" component={About} options={{
 								headerTitle: () => <Header title="About" LoggedIn={state.LoggedIn}
 								/>
 							}} />

@@ -1,132 +1,39 @@
-import React, { useState } from 'react'
-import { Text, TouchableOpacity, Image } from 'react-native'
-import { Entypo } from '@expo/vector-icons';
-import { Alert, ScrollView, DocumentPicker, ImagePicker, Switch, ActivityIndicator, ViewContainer, CheckBox, MultiSelect, MultiPicker, NormalPicker } from '../../components/index';
+import React from 'react'
+import { ScrollView, View, StyleSheet } from 'react-native'
+import { HeaderText, Text } from '../../components'
 
-const About = ({ navigation }) => {
-    const [document, setDocument] = useState();
-    const [image, setImage] = useState();
-    const [switchToggle, setSwitchToggle] = useState(false);
-    const [selected, setSelected] = useState();
-    const [checked, setChecked] = useState(false)
-    const [multiple, setMultiple] = useState();
-    const [packagePicker, setPackagePicker] = useState();
-
-    const [apiData, setApiData] = useState({
-        shipmentServices: [
-            { name: 'Normal', id: 2 },
-            { name: 'Premium', id: 3 },
-        ],
-        countries: [
-            { name: 'LB', id: 2 },
-            { name: 'UK', id: 3 },
-        ],
-    })
-    const [userCred, setUserCred] = useState({
-        name: '',
-        email: '',
-        country_id: null,
-        phone: '',
-        country_reg: [],
-        password: '',
-        confirm: '',
-        city: '',
-        street: '',
-        postal: '',
-        company: '',
-        password: '',
-        confirm_pass: '',
-        services: [],
-        ser: {},
-        document: {}
-    });
-    const [selectedData, setSelectedData] = useState({
-        country: [],
-        country_reg: [],
-        services: [],
-    })
-    const settingCreds = (e, t) => {
-        setUserCred({ ...userCred, services: e })
-    };
+const About = () => {
 
     return (
-        <ScrollView>
-            <ViewContainer>
-                <Text onPress={() => navigation.navigate("aboutDetailed")}>About Page</Text>
-                <DocumentPicker
-                    text="Documents"
-                    value={userCred.document}
-                    setDocument={async (e) => {
-                        let result = await documentBlobConverter(e)
-                        setUserCred({
-                            ...userCred, documents: [{
-                                doc_title: result.name,
-                                doc_url: result.file,
-                                doc_extension: result.extension
-                            }]
-                        })
-                    }}
-                    setError={() => {
-                        setUserCred({ ...userCred, documents: [] })
-                    }}
-                    types={["pdf"]}
-                />
-                <TouchableOpacity onPress={() => Alert("State", document ? document : "I didn't receive the document from the child component yet")}>
-                    <Text>Press me to test if I received the state or not</Text>
-                </TouchableOpacity>
-                <ImagePicker
-                    setImage={(e) => setImage(e)}
-                    icon={<Entypo name="camera" size={24} color="black" />}
-                />
-                <ImagePicker
-                    setImage={(e) => setImage(e)}
-                />
-                {image && <Image
-                    source={{ uri: image }}
-                    resizeMode="cover"
-                    style={{ width: 300, height: 300 }} />}
-                <Switch
-                    onValueChange={() => setSwitchToggle(!switchToggle)}
-                    value={switchToggle}
-                    left="Switch" />
-                <Switch
-                    onValueChange={() => setSwitchToggle(!switchToggle)}
-                    value={switchToggle}
-                    right="Switch" />
-                <MultiPicker
-                    // key={index}
-                    label="Services"
-                    items={apiData.shipmentServices}
-                    value={userCred.services}
-                    setValue={(e) => {
-                        // console.log("New Value: ", e)
-                        settingCreds(e)
-                    }}
-                    customLabel="name"
-                    customId="id"
-                />
-                <NormalPicker
-                    // key={index}
-                    label="Countries"
-                    value={userCred.country_id}
-                    items={apiData.countries}
-                    setValue={(e) => {
-                        console.log("Chosen country: ", e)
-                        setUserCred({...userCred,country_id:parseInt(e)})
-                    }}
-                    search
-                />
-                <CheckBox
-                    value={checked}
-                    onValueChange={() => {
-                        
-                        setChecked(!checked);
-                    }}
-                    left="Checkbox"
-                />
-            </ViewContainer>
-        </ScrollView>
+        <View style={{flex:1}}>
+            <ScrollView>
+                <View style={styles.header_text_container}>
+                    <HeaderText style={styles.header_text}>About</HeaderText>
+                </View>
+                <View style={styles.text_container}>
+                    <Text style={styles.text}>This app was written in react native.{'\n'}tested and built on both ios and android.{'\n'}{'\n'}I used a skeleton template I have written myself, contains some reusable components such as:{'\n'}TextInput, DocumentPicker, ImagePicker, FormValidators and much more...{'\n'}{'\n'}For form validations I have used a package called yup and for global state management I used useReducer + useContext.{'\n'}{'\n'}All the data that is shown in the app is static data (mock data)</Text>
+                </View>
+            </ScrollView>
+        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    header_text_container:{
+        display:'flex',
+        alignItems:'center',
+        marginBottom:10
+    },
+    header_text:{
+    },
+    text_container:{
+        alignItems:'center'
+    },
+    text:{
+        fontSize:16,
+        alignSelf:'center',
+        paddingHorizontal:20     
+    }
+})
 
 export default About
