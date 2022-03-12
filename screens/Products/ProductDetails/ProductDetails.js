@@ -4,22 +4,25 @@ import { Text, HeaderText, TouchableOpacity } from '../../../components';
 import { MainContext } from '../../../MainContext';
 import CartButtons from './components/CartButtons';
 import { styles } from './styles';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useIsFocused } from '@react-navigation/native';
 
-const ProductDetails = ({ route }) => {
+const ProductDetails = ({ route, ...props }) => {
+    
+    const isFocused = useIsFocused();
     const [product, setProduct] = useState();
     const [count, setCount] = useState(0);
     const [state, dispatch] = useContext(MainContext)
 
-    useFocusEffect(
-        useCallback(() => {
-            console.log(route.params.product)
-            setProduct(route.params.product)
-        }, []))
+    // useFocusEffect(
+    //     useCallback(() => {
+    //         console.log(route.params.product)
+    //         setProduct(route.params.product)
+    //     }, []))
 
     useEffect(()=>{
-        setProduct(route.params.product)
-    },[route.params.product])
+        if(isFocused)
+            setProduct(route.params.product)
+    },[route, isFocused])
 
     const confirmAddToCart = () => {
         dispatch({
