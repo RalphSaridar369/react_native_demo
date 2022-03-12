@@ -4,7 +4,7 @@ import { Text, HeaderText, TouchableOpacity } from '../../../components';
 import { MainContext } from '../../../MainContext';
 import CartButtons from './components/CartButtons';
 import { styles } from './styles';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 const ProductDetails = ({ route, ...props }) => {
     
@@ -12,12 +12,6 @@ const ProductDetails = ({ route, ...props }) => {
     const [product, setProduct] = useState();
     const [count, setCount] = useState(0);
     const [state, dispatch] = useContext(MainContext)
-
-    // useFocusEffect(
-    //     useCallback(() => {
-    //         console.log(route.params.product)
-    //         setProduct(route.params.product)
-    //     }, []))
 
     useEffect(()=>{
         if(isFocused)
@@ -56,6 +50,7 @@ const ProductDetails = ({ route, ...props }) => {
                 <Image source={product?.image} style={styles.product_image} />
                 <View style={styles.content_container}>
                     <HeaderText style={styles.product_name}>{product?.name}</HeaderText>
+                    <Text style={styles.product_description}>A product description is the marketing copy that explains what a product is and why it's worth purchasing. The purpose of a product description is to supply customers with important information about the features and benefits of the product so they're compelled to buy.</Text>
                     <Text>${product?.price}</Text>
                     <View style={styles.items_container}>
                         <CartButtons
@@ -69,10 +64,10 @@ const ProductDetails = ({ route, ...props }) => {
                         </View>
                     </View>
                 </View>
-            </ScrollView>
             <View style={{ alignItems: 'center' }}>
                 <TouchableOpacity settings={['primary']} text="Add to cart" onPress={addToCart} />
             </View>
+            </ScrollView>
         </View>
     )
 }

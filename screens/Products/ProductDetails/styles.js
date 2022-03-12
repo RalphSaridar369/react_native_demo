@@ -15,6 +15,9 @@ export const styles = StyleSheet.create({
     product_name: {
         fontSize: 24
     },
+    product_description:{
+        fontSize:14
+    },
     items_container: {
         display: 'flex',
         flexDirection: 'row',
