@@ -52,7 +52,7 @@ const ProductDetails = ({ route, ...props }) => {
                     <HeaderText style={styles.product_name}>{product?.name}</HeaderText>
                     <Text style={styles.product_description}>A product description is the marketing copy that explains what a product is and why it's worth purchasing. The purpose of a product description is to supply customers with important information about the features and benefits of the product so they're compelled to buy.</Text>
                     <Text>${product?.price}</Text>
-                    <View style={styles.items_container}>
+                    {state.UserData.usertype==1 && <View style={styles.items_container}>
                         <CartButtons
                             style={styles.buttons_container}
                             add={() => addOrRemove("add")}
@@ -62,11 +62,11 @@ const ProductDetails = ({ route, ...props }) => {
                             <HeaderText style={styles.total_label}>Total</HeaderText>
                             <HeaderText style={styles.total_value}>${count * product?.price}</HeaderText>
                         </View>
-                    </View>
+                    </View>}
                 </View>
-            <View style={{ alignItems: 'center' }}>
+            {state.UserData.usertype==1 && <View style={{ alignItems: 'center' }}>
                 <TouchableOpacity settings={['primary']} text="Add to cart" onPress={addToCart} />
-            </View>
+            </View>}
             </ScrollView>
         </View>
     )
