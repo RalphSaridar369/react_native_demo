@@ -4,8 +4,11 @@ export const styles = StyleSheet.create({
     main:{
         flex:1
     },
+    flatlist_container:{
+        alignItems:'center'
+    },
     flatlist:{
-        marginVertical:10
+        marginVertical:10,
     },  
     card:{
         borderRadius:10,

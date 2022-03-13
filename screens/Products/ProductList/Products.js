@@ -93,13 +93,16 @@ const Products = (props) => {
     <View style={styles.main}>
       <Header search={search} onChangeText={(e) => setSearch(e)} show={show} />
 
-      <FlatList
-        style={styles.flatlist}
-        numColumns={2}
-        keyExtractor={(item, index) => item.id}
-        data={filteredProducts?.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))}
-        renderItem={_renderItem}
-      />
+      <View style={styles.flatlist_container}>
+        <FlatList
+          style={styles.flatlist}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+          keyExtractor={(item, index) => item.id}
+          data={filteredProducts?.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))}
+          renderItem={_renderItem}
+        />
+      </View>
       <ActionSheet ref={filterRef}>
         <View style={styles.filter_by}>
           <HeaderText style={styles.filter_by_header}>Filter By</HeaderText>
