@@ -10,18 +10,18 @@ import { Normal } from '../../../components/Pickers';
 import { useFocusEffect } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons';
 
-const Products = ({ navigation }) => {
+const Products = (props) => {
   const filterRef = useRef();
   const sortRef = useRef();
+
 
   const [categoriesAll, setCategoriesAll] = useState([]);
   const [brandsAll, setBrandsAll] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState();
   const [brand, setBrand] = useState();
-  // const [data, setData] = useState([]);
-  const [filteredProducts,setFilteredProducts] = useState([]);
-  const [allProducts,setAllProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   useFocusEffect(
     useCallback(() => {
@@ -31,8 +31,11 @@ const Products = ({ navigation }) => {
       setFilteredProducts(products)
     }, []))
 
+  useEffect(() => {
+
+  }, [filteredProducts])
+
   const show = (type) => {
-    console.log("tesrt")
     if (type == "filter")
       filterRef.current?.show();
     else
@@ -40,25 +43,20 @@ const Products = ({ navigation }) => {
   }
 
   const sort = (type) => {
-    console.log(filteredProducts);
     switch (type) {
       case 'A-Z':
-        setFilteredProducts(filteredProducts.sort((a, b) => a.name - b.name))
-        break;
+        setFilteredProducts([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
       case 'Z-A':
-        setFilteredProducts(filteredProducts.sort((a, b) => b.name - a.name))
-        break;
+        setFilteredProducts([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
       case 'high':
-        setFilteredProducts(filteredProducts.sort((a, b) => b.price - a.price))
-        break;
+        setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
       case 'low':
-        setFilteredProducts(filteredProducts.sort((a, b) => a.price - b.price))
-        break;
+        setFilteredProducts([...filteredProducts].sort((a, b) => a.price < b.price ? 1 : -1))
     }
+    setBrand(brand)
   }
 
   const filterData = (type, value) => {
-    console.log("Filtered Products ", filteredProducts, value)
     if (type == "Category") {
       setFilteredProducts(allProducts.filter((item) => item.cat_id === value));
       setBrandsAll(brands)
@@ -68,10 +66,18 @@ const Products = ({ navigation }) => {
     }
   }
 
-  const resetFilter =()=>{
+  const resetFilter = () => {
     setFilteredProducts(products);
     setCategory(null);
     setBrand(null);
+  }
+
+  const _renderItem =({item, index})=>{
+    return  <TouchableOpacity key={index} style={styles.card} onPress={() => props.navigation.navigate("productDetails", { product: item })}>
+      <Image source={item.image} style={styles.image} resizeMode="contain" />
+      <HeaderText style={styles.name}>{item.name}</HeaderText>
+      <Text style={styles.text}>${item.price}</Text>
+    </TouchableOpacity>
   }
 
   return (
@@ -79,23 +85,16 @@ const Products = ({ navigation }) => {
       <Header search={search} onChangeText={(e) => setSearch(e)} show={show} />
 
       <FlatList
-            style={styles.flatlist}
-            numColumns={2}
-            data={filteredProducts?.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))}
-            renderItem={({ item, index }) => (
-                <TouchableOpacity key={index} style={styles.card} onPress={()=>props.navigation.navigate("productDetails",{product:item})}>
-                    <Image source ={item.image} style={styles.image} resizeMode="contain"/>
-                    <HeaderText style={styles.name}>{item.name}</HeaderText>
-                    <Text style={styles.text}>${item.price}</Text>
-                </TouchableOpacity>
-                )
-            }
-        />
+        style={styles.flatlist}
+        numColumns={2}
+        data={filteredProducts?.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))}
+        renderItem={_renderItem}
+      />
       <ActionSheet ref={filterRef}>
         <View style={styles.filter_by}>
           <HeaderText style={styles.filter_by_header}>Filter By</HeaderText>
-          <TouchableOpacity onPress={resetFilter}> 
-            <HeaderText style={[styles.filter_by_header,styles.filter_by_value]}>Reset</HeaderText>
+          <TouchableOpacity onPress={resetFilter}>
+            <HeaderText style={[styles.filter_by_header, styles.filter_by_value]}>Reset</HeaderText>
           </TouchableOpacity>
         </View>
         <View style={styles.picker_container}>
@@ -103,7 +102,6 @@ const Products = ({ navigation }) => {
             items={categoriesAll}
             label="Category"
             setValue={(e) => {
-              console.log("Selected: ",e)
               filterData("Category", e)
               setCategory(e)
             }}

@@ -6,7 +6,7 @@ import { Text } from '../../components';
 
 const Dashboard = () => {
 
-    const fill_bar = '#FF6863'
+    const fill = 'rgb(255, 104, 99)'
     const data_bar = [50, 10, 40, 95, -4, -24, null, 85, undefined, 0, 35, 53, -53, 24, 50, -20, -80]
     const data_line = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
 
@@ -19,7 +19,7 @@ const Dashboard = () => {
             <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollview}>
                 <View style={styles.card}>
                     <Text style={styles.card_header}>Sales</Text>
-                    <BarChart style={{ height: 200 }} data={data_bar} svg={{ fill_bar }} contentInset={{ top: 30, bottom: 30 }}>
+                    <BarChart style={{ height: 200 }} data={data_bar} svg={{ fill }} contentInset={{ top: 30, bottom: 30 }}>
                         <Grid />
                     </BarChart>
                 </View>

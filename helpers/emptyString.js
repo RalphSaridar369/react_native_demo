@@ -9,7 +9,7 @@ export const emptyString =(data)=>{
             })
             return returnVal;
         case 'array':
-            // console.log("array")
+            // ("array")
             data.map((item)=>{
                 if(item.length<1)
                     returnVal = true;

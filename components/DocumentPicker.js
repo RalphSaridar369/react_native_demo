@@ -17,7 +17,6 @@ const DocumentPickerComponent = (props) =>{
 
     const pickDocument = async () => {
         let result = await DocumentPicker.getDocumentAsync({});
-            console.log(result)
             if(result.uri && validateType(result.name)){
                 let splitArray = await result.name.split('.');
                 let extension = await splitArray[splitArray.length-1];

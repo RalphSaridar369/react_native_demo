@@ -6,7 +6,7 @@ import CartButtons from './components/CartButtons';
 import { styles } from './styles';
 import { useIsFocused } from '@react-navigation/native';
 
-const ProductDetails = ({ route, ...props }) => {
+const ProductDetails = ({ route }) => {
     
     const isFocused = useIsFocused();
     const [product, setProduct] = useState();

@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
 
 export const Normal = (props) => {
   // let {items,...rest} = props;
-  // console.log(rest, items[0]);
   // useEffect(()=>{
   //   BackHandler.addEventListener('hardwareBackPress', function () {
   //     setOpen(!open)
@@ -119,7 +118,6 @@ export const Normal = (props) => {
   // },[])
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  console.log("Props",props)
   return (
     <SafeAreaView style={[styles2.dropdown]}>
       <TouchableOpacity onPress={() => setOpen(!open)}>

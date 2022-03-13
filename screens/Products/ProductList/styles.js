@@ -5,8 +5,7 @@ export const styles = StyleSheet.create({
         flex:1
     },
     flatlist:{
-        paddingVertical:20,
-        paddingHorizontal:'auto'
+        marginVertical:10
     },  
     card:{
         margin:5,

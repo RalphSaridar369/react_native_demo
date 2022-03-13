@@ -73,7 +73,6 @@ const Register = ({ navigation }) => {
                         items={categoriesAll}
                         label="Category"
                         setValue={(e) => {
-                            console.log("Selected: ", e)
                             setUserCred({ ...userCred, category: e })
                         }}
                         value={userCred.category}
