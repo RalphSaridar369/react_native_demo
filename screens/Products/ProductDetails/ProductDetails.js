@@ -47,7 +47,7 @@ const ProductDetails = ({ route }) => {
     return (
         <View style={styles.main}>
             <ScrollView>
-                <Image source={product?.image} style={styles.product_image} />
+                <Image source={product?.image} style={styles.product_image} resizeMode="contain"/>
                 <View style={styles.content_container}>
                     <HeaderText style={styles.product_name}>{product?.name}</HeaderText>
                     <Text style={styles.product_description}>A product description is the marketing copy that explains what a product is and why it's worth purchasing. The purpose of a product description is to supply customers with important information about the features and benefits of the product so they're compelled to buy.</Text>

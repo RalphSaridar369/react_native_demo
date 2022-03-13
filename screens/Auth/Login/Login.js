@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
             Alert.alert("Error","Wrong Email")
         }
         else{
-           Alert.alert("Sign in","Do you want to sign in as a seller",[
+           Alert.alert("Sign in","Do you want to sign in as a seller ?",[
                 {text:"No", onPress:()=>confirmSignIn(1)},
                 {text:"Yes", onPress:()=>confirmSignIn(2)},
             ])
