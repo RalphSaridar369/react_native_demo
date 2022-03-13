@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         alignItems:'center',
     },  
     image:{
-        width: 150,
+        width: null,
         height: 150,
     },
     name:{
