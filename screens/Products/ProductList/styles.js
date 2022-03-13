@@ -26,10 +26,17 @@ export const styles = StyleSheet.create({
         width:'50%'
     },
     filter_by:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
         padding:10
     },
     filter_by_header:{
         marginTop:0
+    },
+    filter_by_value:{
+        fontSize:16
     },
     picker_container:{
         alignItems:'center'

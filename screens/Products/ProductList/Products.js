@@ -21,13 +21,13 @@ const Products = ({ navigation }) => {
   const [brand, setBrand] = useState();
   // const [data, setData] = useState([]);
   const [filteredProducts,setFilteredProducts] = useState([]);
-
+  const [allProducts,setAllProducts] = useState([]);
 
   useFocusEffect(
     useCallback(() => {
       setCategoriesAll(categories);
       setBrandsAll(brands);
-      // setData(products)
+      setAllProducts(products)
       setFilteredProducts(products)
     }, []))
 
@@ -60,12 +60,18 @@ const Products = ({ navigation }) => {
   const filterData = (type, value) => {
     console.log("Filtered Products ", filteredProducts, value)
     if (type == "Category") {
-      setFilteredProducts(filteredProducts.filter((item) => item.cat_id === value));
+      setFilteredProducts(allProducts.filter((item) => item.cat_id === value));
       setBrandsAll(brands)
     }
     else {
-      setFilteredProducts(filteredProducts.filter((item) => item.subcat_id === value));
+      setFilteredProducts(allProducts.filter((item) => item.subcat_id === value));
     }
+  }
+
+  const resetFilter =()=>{
+    setFilteredProducts(products);
+    setCategory(null);
+    setBrand(null);
   }
 
   return (
@@ -88,6 +94,9 @@ const Products = ({ navigation }) => {
       <ActionSheet ref={filterRef}>
         <View style={styles.filter_by}>
           <HeaderText style={styles.filter_by_header}>Filter By</HeaderText>
+          <TouchableOpacity onPress={resetFilter}> 
+            <HeaderText style={[styles.filter_by_header,styles.filter_by_value]}>Reset</HeaderText>
+          </TouchableOpacity>
         </View>
         <View style={styles.picker_container}>
           <Normal
