@@ -9,15 +9,12 @@ import { useFocusEffect } from '@react-navigation/native';
 const Cart =()=>{
     const [state,dispatch] = useContext(MainContext);
     const [data,setData] = useState([]);
-
     
     useFocusEffect(
         useCallback(() => {
-            setData(state.cart)
         }, []))
 
     const removeProduct =(id)=>{
-        console.log(id)
         dispatch({type:'REMOVE_FROM_CART',payload:{id:id}})
         setData(data.filter((item)=>item.product.id != id))
         Alert.alert("Product","Product was removed from the cart")
@@ -35,7 +32,7 @@ const Cart =()=>{
 
     return(
         <View style={{flex:1}}>
-            {data.length>0 &&<ScrollViewComponent data={data} removeProduct={removeProduct}/>}
+            {state.cart.length>0 &&<ScrollViewComponent data={state.cart} removeProduct={removeProduct}/>}
             <View style={styles.total}>
                 <HeaderText style={styles.total_label}>Total</HeaderText>
                 <Text style={styles.total_value}>${data.length>0 ?calculateTotal():0}</Text>

@@ -54,11 +54,11 @@ const Products = (props) => {
         setFilteredProducts(ztoa);
         break;
       case 'high':
-        let high = [...filteredProducts].sort((a, b) => b.price < a.price ? 1 : a.price < b.price ? -1 : 0)
+        let high = [...filteredProducts].sort((a, b) => b.price < a.price ? 1: -1)
         setFilteredProducts(high);
         break;
       case 'low':
-        let low = [...filteredProducts].sort((a, b) => a.price < b.price ? 1 : b.price < a.price ? -1 : 0)
+        let low = [...filteredProducts].sort((a, b) => a.price < b.price ? 1 : -1)
         setFilteredProducts(low);
         break;
     }
@@ -137,11 +137,11 @@ const Products = (props) => {
           <HeaderText style={[styles.filter_by_header,styles.filter_by_value]}>{sortedBy}</HeaderText>
         </View>
         <View style={styles.sort_container}>
-          <TouchableOpacity style={styles.icon} onPress={() => sortData('low')}>
-            <Text style={styles.icon_text}>$</Text>
-          </TouchableOpacity>
           <TouchableOpacity style={styles.icon} onPress={() => sortData('high')}>
             <Text style={styles.icon_text}>$$</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.icon} onPress={() => sortData('low')}>
+            <Text style={styles.icon_text}>$</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.icon} onPress={() => sortData('Z-A')}>
             <AntDesign name="caretup" size={24} color="#FF6863" />
