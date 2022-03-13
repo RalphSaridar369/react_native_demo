@@ -45,11 +45,13 @@ const Products = (props) => {
   const sort = (type) => {
     switch (type) {
       case 'A-Z':
-        setFilteredProducts([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
-        console.log([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
+        let atoz = filteredProducts.slice(0).sort((a, b) => a.name < b.name ? 1 : -1)
+        setFilteredProducts(atoz)
+        // console.log([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
       case 'Z-A':
-        setFilteredProducts([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
-        console.log([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
+        let ztoa = filteredProducts.slice(0).sort((a, b) => b.name < a.name ? 1 : -1)
+        setFilteredProducts(ztoa)
+        // console.log([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
       case 'high':
         setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
       case 'low':
@@ -89,6 +91,7 @@ const Products = (props) => {
       <FlatList
         style={styles.flatlist}
         numColumns={2}
+        keyExtractor={(item, index) => item.id}
         data={filteredProducts?.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()))}
         renderItem={_renderItem}
       />
