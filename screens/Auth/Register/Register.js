@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Alert } from 'react-native';
 import { formValidator } from '../../../helpers/formValidator';
-import { Alert, TouchableOpacity, TextInput, PassInput, RadioButton, NormalPicker, DocumentPicker } from '../../../components/index';
+import { TouchableOpacity, TextInput, PassInput, RadioButton, NormalPicker, DocumentPicker } from '../../../components/index';
 import { styles } from './RegisterStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { brands, categories } from '../../../mockData';
@@ -24,6 +24,27 @@ const Register = ({ navigation }) => {
         setUserCred({ ...userCred, [t]: e })
     };
 
+    const login =()=>{
+        let payload;
+        let choice;
+        
+        if(userType==1){
+            payload = {
+                email:userCred.email,
+                password:userCred.password,
+                confirm:userCred.confirm,
+                id:userCred.id,
+            }
+            choice = "buyerRegister"; 
+        }
+
+        else{
+            payload = userCred
+            choice = "sellerRegister"
+        }
+
+        formValidator(payload, choice, () => Alert.alert("SignUp", "User registered successfully", [{ text: "Ok", onPress: () => navigation.navigate("login") }]))
+    }
 
     return (
         <View style={styles.login_container}>
@@ -103,7 +124,7 @@ const Register = ({ navigation }) => {
                         }}
                         types={["pdf"]} />
                     <View style={{ alignItems: 'center' }}>
-                        <TouchableOpacity text="Register" onPress={() => formValidator(userCred, "register", () => Alert("SignUp", "User registered successfully", [{ text: "Ok", onPress: () => navigation.navigate("login") }]))}
+                        <TouchableOpacity text="Register" onPress={() => login()}
                             settings={["primary", "outlined"]} />
                     </View>
                 </View>

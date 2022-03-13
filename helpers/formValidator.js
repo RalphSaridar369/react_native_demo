@@ -8,7 +8,33 @@ const forms = {
         email: yup.string().required().email(),
     }),
 
-    register:yup.object().shape({
+    buyerRegister:yup.object().shape({
+        id:yup.object().shape({
+            doc_title: yup.string().required(),
+            doc_url: yup.string().required(),
+            doc_extension: yup.string().required()
+        }),
+        confirm: yup.string().required()
+        .test('passwords-match', 'Passwords must match', function(value){
+          return this.parent.password === value
+        }),
+        password: yup.string().required(),
+        email: yup.string().required().email(),
+    }),
+
+    sellerRegister:yup.object().shape({
+        id:yup.object().shape({
+            doc_title: yup.string().required(),
+            doc_url: yup.string().required(),
+            doc_extension: yup.string().required()
+        }),
+        company:yup.object().shape({
+            doc_title: yup.string().required(),
+            doc_url: yup.string().required(),
+            doc_extension: yup.string().required()
+        }),
+        brand:yup.number().positive().required(),
+        category:yup.number().positive().required(),
         confirm: yup.string().required()
         .test('passwords-match', 'Passwords must match', function(value){
           return this.parent.password === value
