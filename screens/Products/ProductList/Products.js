@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react'
+import React, { memo, useState, useRef, useCallback, useEffect } from 'react'
 import { View, TouchableOpacity, FlatList, Image } from 'react-native';
 import { brands, categories, products } from '../../../mockData';
 import Header from './components/Header';
@@ -46,8 +46,10 @@ const Products = (props) => {
     switch (type) {
       case 'A-Z':
         setFilteredProducts([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
+        console.log([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
       case 'Z-A':
         setFilteredProducts([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
+        console.log([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
       case 'high':
         setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
       case 'low':
@@ -145,4 +147,4 @@ const Products = (props) => {
 }
 
 
-export default Products
+export default memo(Products)
