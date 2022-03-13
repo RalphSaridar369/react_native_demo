@@ -25,17 +25,12 @@ const Login = ({ navigation }) => {
     }
 
     const signIn =()=>{
-        let email = userCred.email;
-        console.log(email)
-        if(!email.toLowerCase() === "user1@yopmail.com" || !email.toLowerCase() === "user2@yopmail.com"){
-            Alert.alert("Error","Wrong Email")
-        }
-        else{
-           Alert.alert("Sign in","Do you want to sign in as a seller ?",[
+        formValidator(userCred,"login",()=>{
+            Alert.alert("Sign in","Do you want to sign in as a seller ?",[
                 {text:"No", onPress:()=>confirmSignIn(1)},
                 {text:"Yes", onPress:()=>confirmSignIn(2)},
             ])
-        }
+        })
     }
 
     const settingCreds = (e, t) => {
