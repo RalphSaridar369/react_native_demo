@@ -3,7 +3,6 @@ import { View, TouchableOpacity, FlatList, Image } from 'react-native';
 import { brands, categories, products } from '../../../mockData';
 import Header from './components/Header';
 import { styles } from './styles';
-import FlatListComponent from './components/FlatList';
 import ActionSheet from 'react-native-actions-sheet';
 import { HeaderText, Text } from '../../../components';
 import { Normal } from '../../../components/Pickers';
@@ -23,6 +22,7 @@ const Products = (props) => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [sortedBy, setSortedBy] = useState("");
+
 
   useFocusEffect(
     useCallback(() => {
@@ -46,10 +46,10 @@ const Products = (props) => {
   const sortData = (type) => {
     switch (sortedBy) {
       case 'A-Z':
-        let atoz = filteredProducts.slice(0).sort((a, b) => a.name < b.name ? 1 : -1)
+        let atoz = [...filteredProducts].slice(0).sort((a, b) => a.name < b.name ? 1 : -1)
         setFilteredProducts(atoz)
       case 'Z-A':
-        let ztoa = filteredProducts.slice(0).sort((a, b) => b.name < a.name ? 1 : -1)
+        let ztoa = [...filteredProducts].slice(0).sort((a, b) => b.name < a.name ? 1 : -1)
         setFilteredProducts(ztoa)
       case 'high':
         setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
@@ -142,9 +142,6 @@ const Products = (props) => {
           </TouchableOpacity>
         </View>
       </ActionSheet>
-      {/* <FilterActionSheet ref={filterRef}/> */}
-
-
     </View>
   )
 }
