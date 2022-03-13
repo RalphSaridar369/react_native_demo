@@ -22,7 +22,7 @@ const mainReducer = (state, action) => {
     case 'REMOVE_FROM_CART':
       console.log("action",action)
       let cart_products = state.cart;
-      cart_products.filter((item)=>item.product.id != action.payload.id)/
+      cart_products = cart_products.filter((item)=>item.product.id != action.payload.id)/
       console.log("car_products",cart_products)
       return { ...state, cart:state.cart.filter((item)=>item.product.id != action.payload.id) }
   }
