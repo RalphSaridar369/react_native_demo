@@ -78,7 +78,7 @@ const Products = (props) => {
 
   const _renderItem =({item, index})=>{
     return  <TouchableOpacity key={index} style={styles.card} onPress={() => props.navigation.navigate("productDetails", { product: item })}>
-      <Image source={item.image} style={styles.image} resizeMode="contain" />
+      <Image source={item.image} style={styles.image} resizeMode="contain" resizeMethod='scale' />
       <HeaderText style={styles.name}>{item.name}</HeaderText>
       <Text style={styles.text}>${item.price}</Text>
     </TouchableOpacity>
