@@ -22,6 +22,7 @@ const Products = (props) => {
   const [brand, setBrand] = useState();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [sortedBy, setSortedBy] = useState("");
 
   useFocusEffect(
     useCallback(() => {
@@ -33,7 +34,7 @@ const Products = (props) => {
 
   useEffect(() => {
 
-  }, [filteredProducts])
+  }, [filteredProducts, sortedBy])
 
   const show = (type) => {
     if (type == "filter")
@@ -42,22 +43,20 @@ const Products = (props) => {
       sortRef.current?.show();
   }
 
-  const sort = (type) => {
-    switch (type) {
+  const returnData = (type) => {
+    switch (sortedBy) {
       case 'A-Z':
-        let atoz = filteredProducts.slice(0).sort((a, b) => a.name < b.name ? 1 : -1)
-        setFilteredProducts(atoz)
-        // console.log([...filteredProducts].sort((a, b) => a.name < b.name ? 1 : -1))
+        filteredProducts.slice(0).sort((a, b) => a.name < b.name ? 1 : -1)
+        // setFilteredProducts(atoz)
       case 'Z-A':
         let ztoa = filteredProducts.slice(0).sort((a, b) => b.name < a.name ? 1 : -1)
-        setFilteredProducts(ztoa)
-        // console.log([...filteredProducts].sort((a, b) => b.name < a.name ? 1 : -1))
+        // setFilteredProducts(ztoa)
       case 'high':
-        setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
+        // setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
       case 'low':
-        setFilteredProducts([...filteredProducts].sort((a, b) => a.price < b.price ? 1 : -1))
+        // setFilteredProducts([...filteredProducts].sort((a, b) => a.price < b.price ? 1 : -1))
     }
-    setBrand(brand)
+    setSortedBy(type)
   }
 
   const filterData = (type, value) => {
@@ -126,18 +125,19 @@ const Products = (props) => {
       <ActionSheet ref={sortRef}>
         <View style={styles.filter_by}>
           <HeaderText style={styles.filter_by_header}>Sort By</HeaderText>
+          <HeaderText style={[styles.filter_by_header,styles.filter_by_value]}>{sortedBy}</HeaderText>
         </View>
         <View style={styles.sort_container}>
-          <TouchableOpacity style={styles.icon} onPress={() => sort('low')}>
+          <TouchableOpacity style={styles.icon} onPress={() => sortData('low')}>
             <Text style={styles.icon_text}>$</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.icon} onPress={() => sort('high')}>
+          <TouchableOpacity style={styles.icon} onPress={() => sortData('high')}>
             <Text style={styles.icon_text}>$$</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.icon} onPress={() => sort('Z-A')}>
+          <TouchableOpacity style={styles.icon} onPress={() => sortData('Z-A')}>
             <AntDesign name="caretup" size={24} color="#FF6863" />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.icon} onPress={() => sort('A-Z')}>
+          <TouchableOpacity style={styles.icon} onPress={() => sortData('A-Z')}>
             <AntDesign name="caretdown" size={24} color="#FF6863" />
           </TouchableOpacity>
         </View>

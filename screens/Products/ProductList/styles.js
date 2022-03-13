@@ -8,13 +8,22 @@ export const styles = StyleSheet.create({
         marginVertical:10
     },  
     card:{
-        margin:5,
         borderRadius:10,
-        paddingHorizontal:10,
-        borderWidth:1,
-        borderColor:'lightgray',
-        alignSelf:'center',
-        alignItems:'center',
+        paddingVertical:10,
+        paddingHorizontal:20,
+        shadowColor: '#00000021',
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
+        elevation: 12,
+
+        marginVertical: 5,
+        backgroundColor: "white",
+        flexBasis: '46%',
+        marginHorizontal: 5,
     },  
     image:{
         width: null,
@@ -22,7 +31,7 @@ export const styles = StyleSheet.create({
     },
     name:{
         fontSize:16,
-        width:'50%'
+        width:'80%'
     },
     filter_by:{
         display:'flex',
