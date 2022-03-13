@@ -46,15 +46,17 @@ const Products = (props) => {
   const sortData = (type) => {
     switch (sortedBy) {
       case 'A-Z':
-        let atoz = [...filteredProducts].slice(0).sort((a, b) => a.name < b.name ? 1 : -1)
+        let atoz = filteredProducts.slice().sort((a, b) => a.name < b.name ? 1 : b.name < a.name ? -1 : 0)
         setFilteredProducts(atoz)
       case 'Z-A':
-        let ztoa = [...filteredProducts].slice(0).sort((a, b) => b.name < a.name ? 1 : -1)
+        let ztoa = filteredProducts.slice().sort((a, b) => b.name < a.name ? 1 : a.name < b.name ? -1 : 0)
         setFilteredProducts(ztoa)
       case 'high':
-        setFilteredProducts([...filteredProducts].sort((a, b) => b.price < a.price ? 1 : -1))
+        let high = filteredProducts.slice().sort((a, b) => b.price < a.price ? 1 : a.price < b.price ? -1 : 0)
+        setFilteredProducts(high)
       case 'low':
-        setFilteredProducts([...filteredProducts].sort((a, b) => a.price < b.price ? 1 : -1))
+        let low = filteredProducts.slice().sort((a, b) => a.price < b.price ? 1 : b.price < a.price ? -1 : 0)
+        setFilteredProducts(low)
     }
     setSortedBy(type)
   }
