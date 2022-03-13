@@ -68,7 +68,8 @@ const Register = ({ navigation }) => {
                         label="Confirm Password" onChangeText={(e) => settingCreds(e, "confirm")} value={userCred.confirm}
                     />
 
-                    {userType == 2 && <><NormalPicker
+                    {userType == 2 && <>
+                    <NormalPicker
                         items={categoriesAll}
                         label="Category"
                         setValue={(e) => {

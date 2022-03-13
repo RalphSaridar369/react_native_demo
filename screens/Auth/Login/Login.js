@@ -88,6 +88,7 @@ const Login = ({ navigation }) => {
             />
             <PassInput
                 label="Password" style={Platform.OS==='ios' &&{ height:40}} variant="outlined" onChangeText={(e) => settingCreds(e, "password")} value={userCred.password}
+                left="lock-outline"
             />
             <View>
                 <CheckBox

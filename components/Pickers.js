@@ -123,7 +123,7 @@ export const Normal = (props) => {
   return (
     <SafeAreaView style={[styles2.dropdown]}>
       <TouchableOpacity onPress={() => setOpen(!open)}>
-        <Text>{props?.value ? props?.items?.filter((item)=>item.id === props.value)[0].name : props.label}</Text>
+        <Text>{props?.value ? props?.items?.filter((item)=>item.id == props.value)[0]?.name : props.label}</Text>
       </TouchableOpacity>
       <TouchableWithoutFeedback onPress={() => setOpen(false)}>
         <Modal
