@@ -24,17 +24,17 @@ const forms = {
 
     sellerRegister:yup.object().shape({
         id:yup.object().shape({
-            doc_title: yup.string().required(),
-            doc_url: yup.string().required(),
-            doc_extension: yup.string().required()
-        }),
+            doc_title: yup.string(),
+            doc_url: yup.string(),
+            doc_extension: yup.string()
+        }).required(),
         company:yup.object().shape({
-            doc_title: yup.string().required(),
-            doc_url: yup.string().required(),
-            doc_extension: yup.string().required()
-        }),
-        brand:yup.number().positive().required(),
-        category:yup.number().positive().required(),
+            doc_title: yup.string(),
+            doc_url: yup.string(),
+            doc_extension: yup.string()
+        }).required(),
+        brand:yup.number().positive().required('Brand is required'),
+        category:yup.number().positive().required('Category is required'),
         confirm: yup.string().required()
         .test('passwords-match', 'Passwords must match', function(value){
           return this.parent.password === value

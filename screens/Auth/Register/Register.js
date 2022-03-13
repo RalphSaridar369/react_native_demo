@@ -5,10 +5,10 @@ import { TouchableOpacity, TextInput, PassInput, RadioButton, NormalPicker, Docu
 import { styles } from './RegisterStyle';
 import { useFocusEffect } from '@react-navigation/native';
 import { brands, categories } from '../../../mockData';
-import {documentBlobConverter} from '../../../helpers/blobConverter';
+import { documentBlobConverter } from '../../../helpers/blobConverter';
 
 const Register = ({ navigation }) => {
-    const [userCred, setUserCred] = useState({ email: '', password: '', confirm: '', category: '', brand: '', company_registration: {}, id: {} });
+    const [userCred, setUserCred] = useState({ email: '', password: '', confirm: '', category: 1, brand: 1, company_registration: {}, id: {} });
     const [userType, setUserType] = useState(1);
     const [categoriesAll, setCategoriesAll] = useState([]);
     const [brandsAll, setBrandsAll] = useState([]);
@@ -24,21 +24,21 @@ const Register = ({ navigation }) => {
         setUserCred({ ...userCred, [t]: e })
     };
 
-    const login =()=>{
+    const login = () => {
         let payload;
         let choice;
-        
-        if(userType==1){
+
+        if (userType == 1) {
             payload = {
-                email:userCred.email,
-                password:userCred.password,
-                confirm:userCred.confirm,
-                id:userCred.id,
+                email: userCred.email,
+                password: userCred.password,
+                confirm: userCred.confirm,
+                id: userCred.id,
             }
-            choice = "buyerRegister"; 
+            choice = "buyerRegister";
         }
 
-        else{
+        else {
             payload = userCred
             choice = "sellerRegister"
         }
@@ -48,7 +48,7 @@ const Register = ({ navigation }) => {
 
     return (
         <View style={styles.login_container}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.card}>
                     <RadioButton
                         containerStyle={styles.radiobutton_container}
@@ -100,7 +100,7 @@ const Register = ({ navigation }) => {
                                 })
                             }}
                             setError={() => {
-                                setUserCred({...userCred, company_registration: {} })
+                                setUserCred({ ...userCred, company_registration: {} })
                             }}
                             types={["pdf"]} /></>}
 
@@ -120,7 +120,7 @@ const Register = ({ navigation }) => {
                             })
                         }}
                         setError={() => {
-                            setUserCred({...userCred, id: {} })
+                            setUserCred({ ...userCred, id: {} })
                         }}
                         types={["pdf"]} />
                     <View style={{ alignItems: 'center' }}>
