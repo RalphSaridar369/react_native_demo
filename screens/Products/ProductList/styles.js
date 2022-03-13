@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
         flex:1
     },
     flatlist_container:{
-        alignItems:'center'
+        alignItems:'center',
+        flex:1
     },
     flatlist:{
         marginVertical:10,
