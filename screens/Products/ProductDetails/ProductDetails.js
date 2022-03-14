@@ -14,8 +14,11 @@ const ProductDetails = ({ route }) => {
     const [state, dispatch] = useContext(MainContext)
 
     useEffect(()=>{
-        if(isFocused)
-            setProduct(route.params.product)
+        if(isFocused){
+            setProduct(route.params.product);
+            setCount(0)
+        }
+            
     },[route, isFocused])
 
     const confirmAddToCart = () => {

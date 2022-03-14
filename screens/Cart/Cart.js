@@ -35,7 +35,7 @@ const Cart =()=>{
             {state.cart.length>0 &&<ScrollViewComponent data={state.cart} removeProduct={removeProduct}/>}
             <View style={styles.total}>
                 <HeaderText style={styles.total_label}>Total</HeaderText>
-                <Text style={styles.total_value}>${data.length>0 ?calculateTotal():0}</Text>
+                <Text style={styles.total_value}>${state.cart.length>0 ?calculateTotal():0}</Text>
             </View>
         </View>
     )
